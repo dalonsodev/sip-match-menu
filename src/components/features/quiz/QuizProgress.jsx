@@ -1,20 +1,18 @@
-import { t } from "i18next"
-import ProgressIndicator from "../../common/ProgressIndicator"
+import { t } from 'i18next'
+import ProgressIndicator from '../../common/ProgressIndicator'
 
 export default function QuizProgress({ currentStep, totalSteps, onPrev }) {
-   const progress = (currentStep + 1) / totalSteps
-   
-   return (
-      <div className="progress-wrapper">
-         <ProgressIndicator 
-            progress={progress} 
-         />
+  const progress = (currentStep + 1) / totalSteps
 
-         {currentStep > 0 && (
-            <button className="quiz-prev-btn" onClick={onPrev}>
-               {t("quiz.back")}
-            </button>
-         )}
-      </div>
-   )
+  return (
+    <div className="progress-wrapper">
+      <ProgressIndicator progress={progress} />
+
+      {currentStep > 0 && (
+        <button className="quiz-prev-btn" onClick={onPrev}>
+          {t('quiz.back')}
+        </button>
+      )}
+    </div>
+  )
 }

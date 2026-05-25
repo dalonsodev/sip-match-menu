@@ -1,22 +1,22 @@
-import { Outlet } from "react-router-dom"
-import { useTranslation } from "react-i18next"
-import Navbar from "./Navbar"
-import Footer from "./Footer"
+import { Outlet } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import Navbar from './Navbar'
+import Footer from './Footer'
 
 export default function Layout() {
-   const { i18n } = useTranslation()
+  const { i18n } = useTranslation()
 
-   const changeLanguage = (lng) => {
-      i18n.changeLanguage(lng)
-   }
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng)
+  }
 
-   return (
-      <div className="site-wrapper">
-         <Navbar changeLanguage={changeLanguage} />
-         <main>
-            <Outlet />
-         </main>
-         <Footer />
-      </div>
-   )
+  return (
+    <div className="site-wrapper">
+      <Navbar changeLanguage={changeLanguage} />
+      <main>
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
+  )
 }
