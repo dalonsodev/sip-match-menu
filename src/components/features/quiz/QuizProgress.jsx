@@ -1,7 +1,8 @@
-import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 import ProgressIndicator from '../../common/ProgressIndicator'
 
 export default function QuizProgress({ currentStep, totalSteps, onPrev }) {
+  const { t } = useTranslation()
   const progress = (currentStep + 1) / totalSteps
 
   return (
