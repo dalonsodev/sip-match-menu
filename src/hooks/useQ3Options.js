@@ -13,7 +13,7 @@ export default function useQ3Options(currentStep, quizAlcohol, getFilteredAfterQ
       spiritsCounts[spirit] = (spiritsCounts[spirit] || 0) + 1
     })
 
-    let validSpirits = Object.keys(spiritsCounts).filter((spirit) => spiritsCounts[spirit] >= 1)
+    const validSpirits = Object.keys(spiritsCounts).filter((spirit) => spiritsCounts[spirit] >= 1)
 
     return validSpirits.sort((a, b) => {
       if (a === 'Others') return 1
