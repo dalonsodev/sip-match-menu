@@ -9,23 +9,23 @@ export default function CocktailCarousel({ cocktails, activeCard }) {
     return null
   }
 
-  function renderCocktail(cocktail, index) {
-    const toggleCard = () => activateCard(index)
-
-    return (
-      <div
-        key={cocktail.id}
-        className="cocktail-card-wrapper carousel-item"
-        role="group"
-        aria-roledescription={t('a11y.cocktailRoleDesc')}
-        aria-label={`${index + 1} ${t('a11y.of')} ${cocktails.length}: ${cocktail.name}`}
-      >
-        <DrinkCard cocktail={cocktail} isActive={activeIndex === index} onToggle={toggleCard} />
-      </div>
-    )
-  }
-
-  const items = cocktails.map(renderCocktail)
-
-  return <>{items}</>
+  return (
+    cocktails.map((cocktail, index) => {
+      return (
+        <div
+          key={cocktail.id}
+          className="cocktail-card-wrapper carousel-item"
+          role="group"
+          aria-roledescription={t('a11y.cocktailRoleDesc')}
+          aria-label={`${index + 1} ${t('a11y.of')} ${cocktails.length}: ${cocktail.name}`}
+        >
+          <DrinkCard
+            cocktail={cocktail}
+            isActive={activeIndex === index}
+            onToggle={() => activateCard(index)}
+          />
+        </div>
+      )
+    })
+  )
 }
