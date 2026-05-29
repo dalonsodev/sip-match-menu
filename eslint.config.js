@@ -25,6 +25,7 @@ export default defineConfig([
         ecmaFeatures: { jsx: true },
       },
     },
+    // react/prop-types disabled — TypeScript is the modern alternative
     rules: {
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
       'react/self-closing-comp' : 'error',
