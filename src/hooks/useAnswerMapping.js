@@ -1,10 +1,18 @@
 import { useMemo, useCallback } from 'react'
 
+/**
+ * Maps quiz answers with their corresponding drink types.
+ *
+ * @returns {{
+ *  standardizeAnswer: function(string|string[]): string|string[],
+ *  ANSWER_MAP: Object.<string, string>
+ * }}
+ */
 export default function useAnswerMapping() {
   const ANSWER_MAP = useMemo(
     () => ({
       // WITH ALCOHOL
-      // Ocassion (q1)
+      // Occasion (q1)
       Aperitif: 'Aperitif',
       'With meal': 'With meal',
       Dessert: 'Dessert',
@@ -50,8 +58,7 @@ export default function useAnswerMapping() {
     []
   )
 
-  const standardizeAnswer = useCallback(
-    (answer) => {
+  const standardizeAnswer = useCallback((answer) => {
       if (Array.isArray(answer)) {
         return answer.map((opt) => ANSWER_MAP[opt] || opt)
       }

@@ -1,5 +1,19 @@
 import { useState } from 'react'
 
+/**
+ * Handles the filtering of drinks based on: alcohol, category, and/or spirit.
+ *
+ * @param {Function} [deactivateCard] - Deactivates a specific card
+ * @returns {{
+ *  alcoholFilter: boolean,
+ *  categoryFilter: string,
+ *  spiritFilter: string,
+ *  handleAlcoholFilterChange: function,
+ *  handleCategoryFilterChange: function,
+ *  handleSpiritFilterChange: function,
+ *  handleClearFilters: function
+ * }}
+ */
 export default function useDrinkFiltering(deactivateCard) {
   const [alcoholFilter, setAlcoholFilter] = useState(true)
   const [categoryFilter, setCategoryFilter] = useState('')
