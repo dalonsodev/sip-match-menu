@@ -2,7 +2,9 @@
 .site-wrapper {
   max-width: 1200px;
   margin: 0 auto;
-  min-height: 80vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
@@ -116,6 +118,14 @@
 .quiz-page {
   max-width: 600px;
   margin: 0 auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.menu-page {
+  padding-bottom: 1em;
 }
 
 .menu-header,
