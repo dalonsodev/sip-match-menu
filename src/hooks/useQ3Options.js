@@ -1,5 +1,13 @@
 import { useCallback } from 'react'
 
+/**
+ * Returns a callback that will return a collection of valid spirits to be displayed as options
+ *
+ * @param {number} currentStep - The step from the quiz the user is currently at
+ * @param {boolean} quizAlcohol - Whether if the user selected alcoholic drinks
+ * @param {Function} getFilteredAfterQ2 - Returns cocktails filtered by Q1 and Q2 answers
+ * @returns {function(): string[]}
+ */
 export default function useQ3Options(currentStep, quizAlcohol, getFilteredAfterQ2) {
   return useCallback(() => {
     if (!quizAlcohol || currentStep !== 2) return []

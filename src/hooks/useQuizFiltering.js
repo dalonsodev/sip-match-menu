@@ -1,6 +1,16 @@
 import { useCallback } from 'react'
 import cocktails from '../data/cocktails.json'
 
+/**
+ * Returns two filtering functions:
+ * - getFilteredAfterQ2(): Returns cocktails matching Q1 and Q2 answers
+ * - filterCocktails(): Returns cocktails matching all quiz answers
+ *
+ * @param {string[]} answers - User selected answers indexed by step
+ * @param {boolean} quizAlcohol - Whether if the user selected to include alcoholic drinks
+ * @param {Function} standardizeAnswer - Normalizes a raw answer to its ANSWER_MAP equivalent
+ * @returns {{ getFilteredAfterQ2: function(): Object[], filterCocktails: function(): Object[] }}
+ */
 export default function useQuizFiltering(answers, quizAlcohol, standardizeAnswer) {
   const getFilteredAfterQ2 = useCallback(() => {
     if (answers[0] === null || answers[1] === null) return []

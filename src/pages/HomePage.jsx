@@ -6,7 +6,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="hero-bg"></div>
+      <div className="hero-bg" />
       <div className="page home-hero">
         <h1 className="page-title">{t('welcome')}</h1>
         <p className="page-description">{t('welcome.description')}</p>

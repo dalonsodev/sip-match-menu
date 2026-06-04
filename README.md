@@ -20,7 +20,7 @@ A **React-based web application** designed for bars in Spain to showcase an inte
    - **No Alcohol:** Flavor Profile + Smooth/Bubbly Texture
    - **Auto-advance** single-choice questions (150ms UX delay). Also, if after q2 there are not enough options (cocktails) to select from, skip q3 entirely and auto-advance to results
    - **Multi-choice** spirit selection with visual toggle
-   - **Dinamic options:** render options for Q3 based on occasion and flavor selection (avoids showing NotFound component)
+   - **Dynamic options:** render options for Q3 based on occasion and flavor selection (avoids showing NotFound component)
    - **Smart navigation**: Discreet "‹ Back" + prominent "See Results" button
    - **Confirmation flow**: Back button resets previous step for re-selection
 - **Multilingual Support:** Fully localized in Spanish and English using `react-i18next` for seamless language switching.
@@ -28,7 +28,7 @@ A **React-based web application** designed for bars in Spain to showcase an inte
    - `rem` for font sizes to ensure consistent scaling.
    - `em` for margins and paddings for proportional spacing.
    - `px` for border-radius and specific width constraints.
-- **Modular Architecture:** Organized component structure with reusable components (DrinkCard, Layout), custom hooks (useLazyBackground), and centralized styles in **6 CSS separarated files**:
+- **Modular Architecture:** Organized component structure with reusable components (DrinkCard, Layout), custom hooks (useLazyBackground), and centralized styles in **6 CSS separated files**:
   - `globals.css`: Variables + Reset
   - `layout.css`: Layout + Header + Nav + Footer + Page + MenuPage
   - `components.css`: Buttons + Filters/Toggle + Cocktail Cards + Carousel + NotFound + Quiz Nav
@@ -109,7 +109,7 @@ src/
 
 ## Accessibility (WCAG 2.1 AA)
 
-This project is buit with an accessible aproach, compliant to WCAG standards. Key accessibility features include:
+This project is built with an accessible approach, compliant to WCAG standards. Key accessibility features include:
 
 - **Keyboard Navigation:** Every control focusable and operable
 - **Screen Readers:** Clear ARIA labels ("aria-label", "aria-pressed", "role='group'")
@@ -121,7 +121,7 @@ This project is buit with an accessible aproach, compliant to WCAG standards. Ke
 
 ### SEO on-page
 
-A simple initial on-page optimisation was made, including:
+A simple initial on-page optimization was made, including:
 
 - `public/robots.txt` → `Allow: /`
 - `public/sitemap.xml` → Home + Quiz + Menu (2025-11-04)
@@ -150,11 +150,11 @@ This project is built with a modular and scalable approach from the start. Key d
    - **Auto-advance Logic:** useEffect + 150ms timeout for visual feedback
    - **Reset Pattern:** Back button resets target step
    - **Unified Styling:** .menu-filter-btn for options + navigation consistency
-   - **Dynamic Options for q3:** based on occasion and flavor selection, to avoid user disappointment via unnecesarily showing the NotFound component.
+   - **Dynamic Options for q3:** based on occasion and flavor selection, to avoid user disappointment via unnecessarily showing the NotFound component.
    - **UX Flow:** Confirmation -> Progress -> Questions -> Results
 - **Quiz Refactor (major):** Extracted useQuizLogic (~200 lines) into 6 focused hooks:
    - **useQuizState:** State, navigation, answers
-   - **useAnswerMapping:** Multilanguage answer normalization
+   - **useAnswerMapping:** Multi-language answer normalization
    - **useCocktailFiltering:** Filter logic after Q2 and final
    - **useQ3Options:** Dynamic spirit options
    - **useQuizAutoAdvance:** Auto-advance + Q3 skip (with useRef to prevent loops)
@@ -164,12 +164,12 @@ This project is built with a modular and scalable approach from the start. Key d
    - **useDrinkFilters** for modular filter management
    - **useActiveCard** to control when card details are shown/hidden
    - **useClickOutside** to hide card details when tapping/clicking out of the card
-- **UI Refactor (modular):** Extracted components into its own folders for mantainability:
+- **UI Refactor (modular):** Extracted components into its own folders for maintainability:
   - `features/drinkcard/`: `DrinkCard`, `DrinkCardHeader`, `DrinkCardDetails`
   - `features/filter-controls/`: `FilterControls`, `FlavorFilter`, `SpiritFilter`, `FilterFooter`
   - `features/menu/`: `MenuHeader`, `MenuContent`
   - `features/quiz/`: `Quiz`, `QuizConfirmation`, `QuizContent`, `QuizProgress`, `QuizResults`, `QuizStep`
-- **CSS Split:** 1300 lines → **5 files** for mantainability:
+- **CSS Split:** 1300 lines → **5 files** for maintainability:
   - `globals.css`: Reset + variables
   - `layout.css`: Header, footer, page
   - `components.css`: Buttons, toggle, filters, card
@@ -183,7 +183,7 @@ This project is built with a modular and scalable approach from the start. Key d
 
 - [x] Add filtering functionality to MenuPage.jsx to sort cocktails by category or ingredient.
 - [x] Implement the recommendation quiz with a maximum of 3 questions (e.g., alcohol preference, flavor profile, spirit type).
-- [x] Implement cocktail carousel in ManuPage.
+- [x] Implement cocktail carousel in MenuPage.
 - [x] Implement cocktail carousel to show suggested cocktail drinks.
 - [x] Implement conditional options rendering in q3
 - [x] Auto-advance + skip q3 if only one (1) result.
@@ -191,13 +191,13 @@ This project is built with a modular and scalable approach from the start. Key d
 - [x] Implement accessibility standards.
 - [x] Enhance responsiveness with media queries in index.css for better mobile support (e.g., adjust cocktail-card layout).
 - [x] Add ability for the user to see cocktail details (e.g. ingredients, allergens) by tapping the drink card.
-- [x] Assess potential file refactorings to improve readability, mantainability and preserve alignment with best practices.
+- [x] Assess potential file refactorings to improve readability, maintainability and preserve alignment with best practices.
 - [x] Deploy to Netlify for a live demo.
-- [] Polish some loose ends and testing in diferent devices.
+- [] Polish some loose ends and testing in different devices.
 
 ---
 
 ## 📬 Contact
 
-For questions or feedback, reach out at **masdavidalonso@gmail.com**.  
+For questions or feedback, reach out at **masdavidalonso@gmail.com**.
 A live demo will be available at **https://sipmatch.netlify.app/** once deployed.

@@ -26,7 +26,7 @@ export default function ToggleAlcohol({ alcoholFilter, onToggle }) {
               onToggle()
             }
           }}
-        ></span>
+         />
       </label>
     </div>
   )

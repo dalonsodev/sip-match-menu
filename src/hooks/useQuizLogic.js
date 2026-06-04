@@ -6,6 +6,19 @@ import useQuizAutoAdvance from './useQuizAutoAdvance'
 import useQuizFiltering from './useQuizFiltering'
 import useQ3Options from './useQ3Options'
 
+/**
+ * Manages the state and behavior of the quiz
+ *
+ * @returns {{
+ *   currentQuestions: Object[],
+ *   filterCocktails: Object[],
+ *   q3DynamicOptions: string[],
+ *   getIsSelected: Function,
+ *   handleOptionSelect: Function,
+ *   isResultsBtnDisabled: Function
+ * }}
+ * @see useQuizState for additional state properties included in the return
+ */
 export default function useQuizLogic() {
   const { t } = useTranslation()
   const state = useQuizState()

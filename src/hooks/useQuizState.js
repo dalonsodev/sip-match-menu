@@ -2,6 +2,27 @@ import { useState } from 'react'
 import questionsWithAlcohol from '../data/questions/withAlcohol'
 import questionsNoAlcohol from '../data/questions/noAlcohol'
 
+/**
+ * Manages quiz state and navigation.
+ *
+ * @returns {{
+ *   showConfirmation: boolean,
+ *   quizAlcohol: boolean,
+ *   answers: Array,
+ *   setAnswers: Function,
+ *   currentStep: number,
+ *   setCurrentStep: Function,
+ *   lastAnsweredStep: number,
+ *   setLastAnsweredStep: Function,
+ *   skippedQ3: boolean,
+ *   setSkippedQ3: Function,
+ *   currentQuestionsBase: Object[],
+ *   handleStartQuiz: Function,
+ *   handleQuizAlcoholToggle: Function,
+ *   handlePrevStep: Function,
+ *   handleNextStep: Function
+ * }}
+ */
 export default function useQuizState() {
   const [showConfirmation, setShowConfirmation] = useState(true)
   const [quizAlcohol, setQuizAlcohol] = useState(true)
