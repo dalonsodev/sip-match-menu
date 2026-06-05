@@ -20,6 +20,8 @@
     "title": "Encuentra Tu Bebida Ideal",
     "description": "Te ayudamos a descubrir tu bebida perfecta.",
     "beforeStart": "Antes de empezar...",
+    "notSatisfied": "¿No es lo que buscabas?",
+    "exploreMenu": "Explora nuestra carta",
     "confirmAlcohol": "Confirma que quieres opciones de cócteles con alcohol.",
     "withoutAlcohol": "(Desmarca si estás buscando cócteles sin alcohol.)",
     "start": "Comenzar quiz",

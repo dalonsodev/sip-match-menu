@@ -20,6 +20,8 @@
     "title": "Find Your Ideal Drink",
     "description": "Take our little quiz to discover your perfect drink.",
     "beforeStart": "Before starting...",
+    "notSatisfied": "Not what you were looking for?",
+    "exploreMenu": "Explore our menu",
     "confirmAlcohol": "Confirm that you want cocktail options with alcohol.",
     "withoutAlcohol": "(Uncheck if you are looking for non-alcoholic cocktails.)",
     "start": "Start quiz",

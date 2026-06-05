@@ -242,6 +242,7 @@
 .cocktail-count-results {
   gap: 0;
   margin-bottom: 0.5em;
+  align-self: center;
 }
 
 .cocktail-count-number {

@@ -170,3 +170,25 @@
 .question-container h2 {
   margin-bottom: 0.5em;
 }
+
+.results-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.explore-menu-cta {
+  margin: auto;
+  color: var(--text-subtle);
+  opacity: 0.7;
+}
+
+.explore-menu-link {
+  display: block;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.explore-menu-link:hover {
+  text-decoration: underline;
+}

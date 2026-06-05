@@ -40,6 +40,10 @@
   .cocktail-description {
     font-size: 1.05rem;
   }
+  .explore-menu-link {
+    display: inline-block;
+    margin-left: 0.5em;
+  }
 }
 @media (min-width: 600px) {
   .home-hero {
