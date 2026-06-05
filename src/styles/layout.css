@@ -2,7 +2,9 @@
 .site-wrapper {
   max-width: 1200px;
   margin: 0 auto;
-  min-height: 80vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
@@ -107,6 +109,10 @@
   padding: 0 1.5em 1.5em;
 }
 
+.quiz-page.results-active .cocktail-list.carousel {
+  flex: none;
+}
+
 .menu-header,
 .clear-filters-container {
   padding: 0 1.5em;
@@ -116,6 +122,14 @@
 .quiz-page {
   max-width: 600px;
   margin: 0 auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.menu-page {
+  padding-bottom: 1em;
 }
 
 .menu-header,
