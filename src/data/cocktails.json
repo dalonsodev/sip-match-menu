@@ -301,6 +301,7 @@
     "image": "/cocktail-images/nojito.webp",
     "imageFallback": "/cocktail-images/nojito.png",
     "ingredients": ["Mint", "Lime Juice", "Soda Water", "Sugar"],
+    "texture": "Bubbly",
     "category": "herbal",
     "hasAlcohol": false,
     "description": "A minty, lime-infused fizz, perfect for a refreshing break.",
