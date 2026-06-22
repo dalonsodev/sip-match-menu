@@ -1,5 +1,6 @@
 import { Link, NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import logo from '../../assets/sipmatch-logo.svg'
 
 export default function Navbar({ changeLanguage }) {
   const { t, i18n } = useTranslation()
@@ -19,8 +20,8 @@ export default function Navbar({ changeLanguage }) {
           {flagIcon}
         </button>
       </div>
-      <Link className="logo" to="/">
-        SipMatch
+      <Link to="/">
+        <img className="logo-header" src={logo} alt="SipMatch" />
       </Link>
       <nav className="nav-links">
         <NavLink className={({ isActive }) => `nav-link ${isActive ? 'active' : null}`} to="/quiz">

@@ -21,12 +21,14 @@
   z-index: 10;
 }
 
-.logo {
-  color: var(--text);
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-decoration: none;
-  letter-spacing: -1px;
+.logo-header {
+  width: 120px;
+  /* Optical correction: 'p' descender shifts visual center above geometric center */
+  transform: translateY(5px);
+}
+
+.logo-footer {
+  width: 100px;
 }
 
 .nav-links {

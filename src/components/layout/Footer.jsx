@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import logo from '../../assets/sipmatch-logo.svg'
 
 export default function Footer() {
   const { t } = useTranslation()
@@ -6,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="footer">
       <p>{t('footer.text-copy')}</p>
-      <p>{t('footer.text-other')}</p>
+      <img className="logo-footer" src={logo} alt="SipMatch" />
     </footer>
   )
 }
