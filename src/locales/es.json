@@ -71,8 +71,7 @@
     "description": "Detalles de la bebida"
   },
   "footer": {
-    "text-copy": "© 2025 SipMatch Menu.",
-    "text-other": "Proyecto Portafolio"
+    "text-copy": "© 2025 SipMatch Menu."
   },
   "category": {
     "refreshingAndLight": "Refrescante y ligero",
