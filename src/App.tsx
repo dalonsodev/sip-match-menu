@@ -1,10 +1,11 @@
+import { ReactNode } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './components/layout/Layout'
 import Quiz from './components/features/quiz/Quiz'
 import HomePage from './pages/HomePage'
 import MenuPage from './pages/MenuPage'
 
-export default function App() {
+export default function App(): ReactNode {
   return (
     <BrowserRouter>
       <Routes>
