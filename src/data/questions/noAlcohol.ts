@@ -1,6 +1,6 @@
-import type { Question } from '../../types'
+import type { QuizQuestion } from '../../types'
 
-const questions: Question[] = [
+const questions: QuizQuestion[] = [
   {
     textKey: 'quiz.flavorExperience',
     options: [
