@@ -1,4 +1,6 @@
-export default [
+import type { Question } from '../../types'
+
+const questions: Question[] = [
   {
     textKey: 'quiz.whenDrink',
     options: [
@@ -31,3 +33,5 @@ export default [
     isMulti: true
   }
 ]
+
+export default questions
