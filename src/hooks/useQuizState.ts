@@ -1,32 +1,33 @@
-import { useState } from 'react'
+import { useState, Dispatch, SetStateAction } from 'react'
 import questionsWithAlcohol from '../data/questions/withAlcohol'
 import questionsNoAlcohol from '../data/questions/noAlcohol'
+import { QuizAnswer, QuizQuestion } from '../types'
+
+interface QuizStateReturn {
+  showConfirmation: boolean
+  quizAlcohol: boolean
+  answers: QuizAnswer[]
+  setAnswers: Dispatch<SetStateAction<QuizAnswer[]>>
+  currentStep: number
+  setCurrentStep: Dispatch<SetStateAction<number>>
+  lastAnsweredStep: number
+  setLastAnsweredStep: Dispatch<SetStateAction<number>>
+  skippedQ3: boolean
+  setSkippedQ3: Dispatch<SetStateAction<boolean>>
+  currentQuestionsBase: QuizQuestion[]
+  handleStartQuiz: () => void
+  handleQuizAlcoholToggle: () => void
+  handlePrevStep: () => void
+  handleNextStep: () => void
+}
 
 /**
  * Manages quiz state and navigation.
- *
- * @returns {{
- *   showConfirmation: boolean,
- *   quizAlcohol: boolean,
- *   answers: Array,
- *   setAnswers: Function,
- *   currentStep: number,
- *   setCurrentStep: Function,
- *   lastAnsweredStep: number,
- *   setLastAnsweredStep: Function,
- *   skippedQ3: boolean,
- *   setSkippedQ3: Function,
- *   currentQuestionsBase: Object[],
- *   handleStartQuiz: Function,
- *   handleQuizAlcoholToggle: Function,
- *   handlePrevStep: Function,
- *   handleNextStep: Function
- * }}
  */
-export default function useQuizState() {
+export default function useQuizState(): QuizStateReturn {
   const [showConfirmation, setShowConfirmation] = useState(true)
   const [quizAlcohol, setQuizAlcohol] = useState(true)
-  const [answers, setAnswers] = useState([])
+  const [answers, setAnswers] = useState<QuizAnswer[]>([])
   const [currentStep, setCurrentStep] = useState(0)
   const [lastAnsweredStep, setLastAnsweredStep] = useState(-1)
   const [skippedQ3, setSkippedQ3] = useState(false)

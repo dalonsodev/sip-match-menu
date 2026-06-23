@@ -1,22 +1,23 @@
 import { useCallback } from 'react'
+import { AlcoholicCocktail } from '../types'
 
 /**
  * Returns a callback that will return a collection of valid spirits to be displayed as options
- *
- * @param {number} currentStep - The step from the quiz the user is currently at
- * @param {boolean} quizAlcohol - Whether if the user selected alcoholic drinks
- * @param {Function} getFilteredAfterQ2 - Returns cocktails filtered by Q1 and Q2 answers
- * @returns {function(): string[]}
  */
-export default function useQ3Options(currentStep, quizAlcohol, getFilteredAfterQ2) {
+export default function useQ3Options(
+  currentStep: number,
+  quizAlcohol: boolean,
+  getFilteredAfterQ2: () => AlcoholicCocktail[]
+): () => string[] {
+
   return useCallback(() => {
     if (!quizAlcohol || currentStep !== 2) return []
 
     const filteredAfterQ2 = getFilteredAfterQ2()
     if (filteredAfterQ2.length < 2) return []
 
-    const spiritsCounts = {}
-    filteredAfterQ2.forEach((cocktail) => {
+    const spiritsCounts: Record<string, number> = {}
+    filteredAfterQ2.forEach((cocktail: AlcoholicCocktail) => {
       const spirit = cocktail.spirit
       spiritsCounts[spirit] = (spiritsCounts[spirit] || 0) + 1
     })

@@ -2,17 +2,15 @@ import { useState } from 'react'
 
 /**
  * Returns index of current active card, and the functions to activate/deactivate it.
- *
- * @returns {{ activeIndex: number|null, activateCard: function, deactivateCard: function }}
  */
 export default function useActiveCard() {
-  const [activeIndex, setActiveIndex] = useState(null)
+  const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
-  function activateCard(index) {
+  function activateCard(index: number): void {
     setActiveIndex(index)
   }
 
-  function deactivateCard() {
+  function deactivateCard(): void {
     setActiveIndex(null)
   }
 

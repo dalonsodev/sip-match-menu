@@ -1,25 +1,38 @@
 import { useCallback } from 'react'
-import cocktails from '../data/cocktails.json'
+import cocktailData from '../data/cocktails.json'
+import type { Cocktail, QuizAnswer, AlcoholicCocktail } from '../types'
+
+const cocktails = cocktailData as Cocktail[]
+
+interface QuizFilteringReturn {
+  getFilteredAfterQ2: () => AlcoholicCocktail[]
+  filterCocktails: () => Cocktail[]
+}
 
 /**
  * Returns two filtering functions:
  * - getFilteredAfterQ2(): Returns cocktails matching Q1 and Q2 answers
  * - filterCocktails(): Returns cocktails matching all quiz answers
- *
- * @param {string[]} answers - User selected answers indexed by step
- * @param {boolean} quizAlcohol - Whether if the user selected to include alcoholic drinks
- * @param {Function} standardizeAnswer - Normalizes a raw answer to its ANSWER_MAP equivalent
- * @returns {{ getFilteredAfterQ2: function(): Object[], filterCocktails: function(): Object[] }}
  */
-export default function useQuizFiltering(answers, quizAlcohol, standardizeAnswer) {
+export default function useQuizFiltering(
+  answers: QuizAnswer[],
+  quizAlcohol: boolean,
+  standardizeAnswer: (answer: QuizAnswer) => string | string[]
+): QuizFilteringReturn {
+
   const getFilteredAfterQ2 = useCallback(() => {
     if (answers[0] === null || answers[1] === null) return []
     const q1 = standardizeAnswer(answers[0])
     const q2 = standardizeAnswer(answers[1])
 
-    return cocktails.filter((cocktail) => {
+    return cocktails.filter((cocktail): cocktail is AlcoholicCocktail => {
+      // Core configuration safety guard: drops mismatched asset processing early
       if (!cocktail.hasAlcohol) return false
-      const matchesOccasion = cocktail.occasion.includes(q1)
+
+      const matchesOccasion = Array.isArray(q1)
+        ? q1.some((occ) => (cocktail.occasion as string[]).includes(occ))
+        : (cocktail.occasion as string[]).includes(q1)
+
       const matchesCategory = cocktail.category === q2
 
       return matchesOccasion && matchesCategory
@@ -33,9 +46,10 @@ export default function useQuizFiltering(answers, quizAlcohol, standardizeAnswer
 
     return cocktails.filter((cocktail) => {
       if (cocktail.hasAlcohol !== quizAlcohol) return false
-      if (quizAlcohol) {
+
+      if (cocktail.hasAlcohol) {
         return (
-          cocktail.occasion.includes(q1) &&
+          (cocktail.occasion as string[]).includes(q1 as string) &&
           cocktail.category === q2 &&
           (!q3 || q3.includes(cocktail.spirit))
         )

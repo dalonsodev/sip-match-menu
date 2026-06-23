@@ -1,15 +1,13 @@
 import { useMemo, useCallback } from 'react'
+import { QuizAnswer } from '../types'
+
+type AnswerMap = Record<string, string>
 
 /**
  * Maps quiz answers with their corresponding drink types.
- *
- * @returns {{
- *  standardizeAnswer: function(string|string[]): string|string[],
- *  ANSWER_MAP: Object.<string, string>
- * }}
  */
 export default function useAnswerMapping() {
-  const ANSWER_MAP = useMemo(
+  const ANSWER_MAP = useMemo<AnswerMap>(
     () => ({
       // WITH ALCOHOL
       // Occasion (q1)
@@ -58,7 +56,10 @@ export default function useAnswerMapping() {
     []
   )
 
-  const standardizeAnswer = useCallback((answer) => {
+  const standardizeAnswer = useCallback((answer: QuizAnswer): string | string[] => {
+      if (answer === null) {
+        return ''
+      }
       if (Array.isArray(answer)) {
         return answer.map((opt) => ANSWER_MAP[opt] || opt)
       }

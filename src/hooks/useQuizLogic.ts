@@ -5,21 +5,22 @@ import useAnswerMapping from './useAnswerMapping'
 import useQuizAutoAdvance from './useQuizAutoAdvance'
 import useQuizFiltering from './useQuizFiltering'
 import useQ3Options from './useQ3Options'
+import type { QuizQuestion, CurrentQuestion, Cocktail, AlcoholicCocktail } from '../types'
+
+interface QuizLogicReturn extends ReturnType<typeof useQuizState> {
+  currentQuestions: CurrentQuestion[]
+  filteredCocktails: Cocktail[]
+  q3DynamicOptions: string[]
+  getIsSelected: (question: QuizQuestion, opt: string) => boolean
+  handleOptionSelect: (selectedOption: string, step: number) => void
+  isResultsBtnDisabled: () => boolean
+}
 
 /**
  * Manages the state and behavior of the quiz
- *
- * @returns {{
- *   currentQuestions: Object[],
- *   filterCocktails: Object[],
- *   q3DynamicOptions: string[],
- *   getIsSelected: Function,
- *   handleOptionSelect: Function,
- *   isResultsBtnDisabled: Function
- * }}
  * @see useQuizState for additional state properties included in the return
  */
-export default function useQuizLogic() {
+export default function useQuizLogic(): QuizLogicReturn {
   const { t } = useTranslation()
   const state = useQuizState()
   const { standardizeAnswer } = useAnswerMapping()
@@ -30,7 +31,11 @@ export default function useQuizLogic() {
     standardizeAnswer
   )
 
-  const getQ3Options = useQ3Options(state.currentStep, state.quizAlcohol, getFilteredAfterQ2)
+  const getQ3Options = useQ3Options(
+    state.currentStep,
+    state.quizAlcohol,
+    getFilteredAfterQ2
+  )
 
   const q3DynamicOptions = getQ3Options()
 
@@ -46,13 +51,13 @@ export default function useQuizLogic() {
 
   useQuizAutoAdvance({ ...state, currentQuestions, getFilteredAfterQ2 })
 
-  function getIsSelected(question, opt) {
+  function getIsSelected(question: QuizQuestion, opt: string): boolean {
     const ans = state.answers[state.currentStep]
 
     return question.isMulti ? (ans || []).includes(opt) : ans === opt
   }
 
-  function handleOptionSelect(selectedOption, step) {
+  function handleOptionSelect(selectedOption: string, step: number): void {
     state.setAnswers((prev) => {
       const newAnswers = [...prev]
       if (newAnswers[step] === undefined) {
@@ -76,11 +81,11 @@ export default function useQuizLogic() {
     state.setLastAnsweredStep(step)
   }
 
-  function isResultsBtnDisabled() {
+  function isResultsBtnDisabled(): boolean {
     if (state.currentStep !== currentQuestions.length - 1) return true
     const ans = state.answers[state.currentStep]
     const q = currentQuestions[state.currentStep]
-    return q?.isMulti ? !(ans?.length > 0) : !ans
+    return q?.isMulti ? !(Array.isArray(ans) && ans?.length > 0) : !ans
   }
 
   return {

@@ -1,20 +1,27 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, Dispatch, SetStateAction } from 'react'
+import type { AlcoholicCocktail } from '../types'
+import type { QuizAnswer, CurrentQuestion } from '../types'
+
+interface QuizAutoAdvanceProps {
+  currentStep: number
+  currentQuestions: CurrentQuestion[]
+  answers: QuizAnswer[]
+  lastAnsweredStep: number
+  quizAlcohol: boolean
+
+  /** Will filter out cocktails that don't match occasion & category */
+  getFilteredAfterQ2: () => AlcoholicCocktail[]
+
+  setCurrentStep: Dispatch<SetStateAction<number>>
+  setLastAnsweredStep: Dispatch<SetStateAction<number>>
+  setAnswers: Dispatch<SetStateAction<QuizAnswer[]>>
+
+  /** Flag to manually signal that Q3 was skipped due to a single match scenario */
+  setSkippedQ3: Dispatch<SetStateAction<boolean>>
+}
 
 /**
  * Auto-advances the current quiz step if not enough options to display.
- *
- * @param {Object} params
- * @param {number} params.currentStep - The step from the quiz the user is currently in
- * @param {Object[]} params.currentQuestions - Questions currently displayed in the quiz
- * @param {string[]} params.answers - Currently displayed answers
- * @param {number} params.lastAnsweredStep - The previous step in the quiz
- * @param {boolean} params.quizAlcohol - Whether if the user selected alcoholic drinks
- * @param {Function} params.getFilteredAfterQ2 - Will filter out cocktails that don't match occasion & category
- * @param {Function} params.setCurrentStep - Sets the current step in the quiz
- * @param {Function} params.setLastAnsweredStep - Sets the previous step in the quiz
- * @param {Function} params.setAnswers - The answers that will be displayed
- * @param {Function} params.setSkippedQ3 - Marks Q3 as skipped
- * @returns {void}
  */
 export default function useQuizAutoAdvance({
   currentStep,
@@ -27,7 +34,8 @@ export default function useQuizAutoAdvance({
   setLastAnsweredStep,
   setAnswers,
   setSkippedQ3
-}) {
+}: QuizAutoAdvanceProps): void {
+
   const isSkippingToResults = useRef(false)
 
   useEffect(() => {

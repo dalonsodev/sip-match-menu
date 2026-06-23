@@ -27,12 +27,19 @@ export interface NonAlcoholicCocktail extends BaseCocktail {
 
 export type Cocktail = AlcoholicCocktail | NonAlcoholicCocktail
 
-export interface QuizOption {
-  key: string
-}
-
-export interface Question {
+export interface QuizQuestion {
   textKey: string
   options: QuizOption[]
   isMulti: boolean
 }
+
+export type CurrentQuestion = Omit<QuizQuestion, 'options'> & {
+  text: string
+  options: string[]
+}
+
+export interface QuizOption {
+  key: string
+}
+
+export type QuizAnswer = string | string[] | null
