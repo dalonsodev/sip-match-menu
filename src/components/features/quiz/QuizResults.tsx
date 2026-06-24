@@ -2,8 +2,16 @@ import { Link } from 'react-router-dom'
 import useActiveCard from '../../../hooks/useActiveCard'
 import CocktailCarousel from '../../common/CocktailCarousel'
 import NotFound from '../../common/NotFound'
+import type { ReactNode } from 'react'
+import type { TFunction } from 'i18next'
+import type { Cocktail } from '../../../types'
 
-export default function QuizResults({ cocktails, t }) {
+interface QuizResultsProps {
+  cocktails: Cocktail[]
+  t: TFunction
+}
+
+export default function QuizResults({ cocktails, t }: QuizResultsProps): ReactNode {
   const hasResults = cocktails.length > 0
   const activeCard = useActiveCard()
 

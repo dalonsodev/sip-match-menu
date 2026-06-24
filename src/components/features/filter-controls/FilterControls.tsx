@@ -1,6 +1,20 @@
 import FlavorFilter from './FlavorFilter'
 import SpiritFilter from './SpiritFilter'
 import FiltersFooter from './FiltersFooter'
+import type { ReactNode } from 'react'
+import type { TFunction } from 'i18next'
+
+interface FilterControlProps {
+  alcoholFilter: boolean
+  categoryFilter: string
+  spiritFilter: string
+  handleClearFilters: () => void
+  handleCategoryFilterChange: (category: string) => void
+  handleSpiritFilterChange: (spirit: string) => void
+  handleAlcoholFilterChange?: () => void
+  drinksToDisplayLength: number
+  t: TFunction
+}
 
 export default function FilterControls({
   alcoholFilter,
@@ -11,7 +25,7 @@ export default function FilterControls({
   handleSpiritFilterChange,
   drinksToDisplayLength,
   t
-}) {
+}: FilterControlProps): ReactNode {
   const hasActiveFilters = categoryFilter || spiritFilter
 
   return (
@@ -24,7 +38,11 @@ export default function FilterControls({
       />
 
       {alcoholFilter && (
-        <SpiritFilter spiritFilter={spiritFilter} onSpiritChange={handleSpiritFilterChange} t={t} />
+        <SpiritFilter
+          spiritFilter={spiritFilter}
+          onSpiritChange={handleSpiritFilterChange}
+          t={t}
+        />
       )}
 
       <FiltersFooter

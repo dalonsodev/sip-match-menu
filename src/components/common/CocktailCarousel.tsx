@@ -1,7 +1,15 @@
 import { useTranslation } from 'react-i18next'
 import DrinkCard from '../features/drinkcard/DrinkCard'
+import type { ReactNode } from 'react'
+import type { Cocktail } from '../../types'
+import type useActiveCard from '../../hooks/useActiveCard'
 
-export default function CocktailCarousel({ cocktails, activeCard }) {
+interface CocktailCarouselProps {
+  cocktails: Cocktail[]
+  activeCard: ReturnType<typeof useActiveCard>
+}
+
+export default function CocktailCarousel({ cocktails, activeCard }: CocktailCarouselProps): ReactNode {
   const { t } = useTranslation()
   const { activeIndex, activateCard } = activeCard
 

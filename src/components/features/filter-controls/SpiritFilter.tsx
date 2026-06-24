@@ -1,6 +1,19 @@
+import type { ReactNode } from 'react'
+import type { TFunction } from 'i18next'
+
 const SPIRITS = ['Whisky', 'Gin', 'Vodka', 'Rum', 'Tequila', 'Others']
 
-export default function SpiritFilter({ spiritFilter, onSpiritChange, t }) {
+interface SpiritFilterProps {
+  spiritFilter: string
+  onSpiritChange: (spirit: string) => void
+  t: TFunction
+}
+
+export default function SpiritFilter({
+  spiritFilter,
+  onSpiritChange,
+  t
+}: SpiritFilterProps): ReactNode {
   return (
     <div className="menu-filter menu-filter-spirit">
       <p className="menu-filter-label">{t('menu.filter.mainSpirit')}:</p>

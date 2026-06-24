@@ -1,10 +1,13 @@
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
-import MenuHeader from '../components/features/menu/MenuHeader'
-import MenuContent from '../components/features/menu/MenuContent'
-import cocktails from '../data/cocktails.json'
+import cocktailData from '../data/cocktails.json'
 import useDrinkFiltering from '../hooks/useDrinkFiltering'
 import useActiveCard from '../hooks/useActiveCard'
+import MenuHeader from '../components/features/menu/MenuHeader'
+import MenuContent from '../components/features/menu/MenuContent'
+import type { Cocktail } from '../types'
+
+const cocktails = cocktailData as Cocktail[]
 
 export default function Menu(): ReactNode {
   const { t } = useTranslation()
@@ -20,10 +23,12 @@ export default function Menu(): ReactNode {
     handleClearFilters
   } = useDrinkFiltering(activeCard.deactivateCard)
 
-  const drinksToDisplay = cocktails.filter((cocktail) => {
+  const drinksToDisplay = cocktails.filter((cocktail: Cocktail) => {
     const matchesAlcohol = cocktail.hasAlcohol === alcoholFilter
     const matchesCategory = categoryFilter ? cocktail.category === categoryFilter : true
-    const matchesSpirit = alcoholFilter && spiritFilter ? cocktail.spirit === spiritFilter : true
+    const matchesSpirit = alcoholFilter && spiritFilter && cocktail.hasAlcohol
+      ? cocktail.spirit === spiritFilter
+      : true
 
     return matchesAlcohol && matchesCategory && matchesSpirit
   })

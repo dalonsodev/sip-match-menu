@@ -3,17 +3,25 @@ import { useTranslation } from 'react-i18next'
 import useClickOutside from '../../../hooks/useClickOutside'
 import DrinkCardHeader from './DrinkCardHeader'
 import DrinkCardDetails from './DrinkCardDetails'
+import type { ReactNode, SyntheticEvent, KeyboardEvent } from 'react'
+import type { Cocktail } from '../../../types'
 
-export default function DrinkCard({ cocktail, isActive, onToggle }) {
+interface DrinkCardProps {
+  cocktail: Cocktail
+  isActive: boolean
+  onToggle: () => void
+}
+
+export default function DrinkCard({ cocktail, isActive, onToggle }: DrinkCardProps): ReactNode {
   const { t } = useTranslation()
   const [isExpanded, setIsExpanded] = useState(false)
-  const cardRef = useRef(null)
+  const cardRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     setIsExpanded(isActive)
   }, [isActive])
 
-  function handleToggle(e) {
+  function handleToggle(e: SyntheticEvent<HTMLElement>): void {
     e.stopPropagation()
     onToggle?.()
     setIsExpanded((prev) => !prev)
@@ -23,7 +31,7 @@ export default function DrinkCard({ cocktail, isActive, onToggle }) {
     if (isExpanded) setIsExpanded(false)
   })
 
-  function handleKeyDown(e) {
+  function handleKeyDown(e: KeyboardEvent<HTMLElement>): void {
     if (e.key === ' ' || e.key === 'Enter') {
       e.preventDefault()
       handleToggle(e)
@@ -36,7 +44,7 @@ export default function DrinkCard({ cocktail, isActive, onToggle }) {
       className={`cocktail-card ${isExpanded ? 'expanded' : ''}`}
       onClick={handleToggle}
       onKeyDown={handleKeyDown}
-      tabIndex="0"
+      tabIndex={0}
       role="button"
       aria-expanded={isExpanded}
     >

@@ -11,7 +11,7 @@ interface QuizLogicReturn extends ReturnType<typeof useQuizState> {
   currentQuestions: CurrentQuestion[]
   filteredCocktails: Cocktail[]
   q3DynamicOptions: string[]
-  getIsSelected: (question: QuizQuestion, opt: string) => boolean
+  getIsSelected: (question: CurrentQuestion, opt: string) => boolean
   handleOptionSelect: (selectedOption: string, step: number) => void
   isResultsBtnDisabled: () => boolean
 }
@@ -51,7 +51,7 @@ export default function useQuizLogic(): QuizLogicReturn {
 
   useQuizAutoAdvance({ ...state, currentQuestions, getFilteredAfterQ2 })
 
-  function getIsSelected(question: QuizQuestion, opt: string): boolean {
+  function getIsSelected(question: CurrentQuestion, opt: string): boolean {
     const ans = state.answers[state.currentStep]
 
     return question.isMulti ? (ans || []).includes(opt) : ans === opt

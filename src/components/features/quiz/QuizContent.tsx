@@ -1,6 +1,23 @@
 import QuizProgress from './QuizProgress'
 import QuizStep from './QuizStep'
 import QuizResults from './QuizResults'
+import type { ReactNode } from 'react'
+import type { TFunction } from 'i18next'
+import type { Cocktail, CurrentQuestion, QuizOption, QuizQuestion } from '../../../types'
+
+interface QuizContent {
+  currentStep: number
+  currentQuestions: CurrentQuestion[]
+  quizAlcohol: boolean
+  q3DynamicOptions: string[]
+  filteredCocktails: Cocktail[]
+  getIsSelected: (question: CurrentQuestion, opt: string) => boolean
+  handleOptionSelect: (selectedOption: string, step: number) => void
+  handlePrevStep: () => void
+  handleNextStep: () => void
+  isResultsBtnDisabled: boolean
+  t: TFunction
+}
 
 export default function QuizContent({
   currentStep,
@@ -14,7 +31,7 @@ export default function QuizContent({
   handleNextStep,
   isResultsBtnDisabled,
   t
-}) {
+}: QuizContent): ReactNode {
   function renderQuestion() {
     const question = currentQuestions[currentStep] || { options: [], isMulti: false }
     const isQ3Alcohol = quizAlcohol && currentStep === 2
@@ -32,7 +49,7 @@ export default function QuizContent({
         question={question}
         options={optionsToDisplay}
         getIsSelected={getIsSelected}
-        onSelect={(value) => handleOptionSelect(value, currentStep)}
+        onSelect={(value: string) => handleOptionSelect(value, currentStep)}
         isMulti={question.isMulti}
       />
     )
@@ -57,7 +74,7 @@ export default function QuizContent({
           <button
             className="btn-primary"
             onClick={handleNextStep}
-            disabled={isResultsBtnDisabled()}
+            disabled={isResultsBtnDisabled}
           >
             {t('quiz.results')}
           </button>

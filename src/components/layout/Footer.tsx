@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import logo from '../../assets/sipmatch-logo.svg'
+import type { ReactNode } from 'react'
 
-export default function Footer() {
+export default function Footer(): ReactNode {
   const { t } = useTranslation()
 
   return (

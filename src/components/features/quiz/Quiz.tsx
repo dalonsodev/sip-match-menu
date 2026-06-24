@@ -1,9 +1,10 @@
 import { useTranslation } from 'react-i18next'
-import QuizConfirmation from '../quiz/QuizConfirmation'
 import useQuizLogic from '../../../hooks/useQuizLogic'
+import QuizConfirmation from './QuizConfirmation'
 import QuizContent from './QuizContent'
+import { ReactNode } from 'react'
 
-export default function Quiz() {
+export default function Quiz(): ReactNode {
   const { t } = useTranslation()
   const {
     showConfirmation,
@@ -48,7 +49,7 @@ export default function Quiz() {
             handleOptionSelect={handleOptionSelect}
             handlePrevStep={handlePrevStep}
             handleNextStep={handleNextStep}
-            isResultsBtnDisabled={isResultsBtnDisabled}
+            isResultsBtnDisabled={isResultsBtnDisabled()}
             t={t}
           />
         )}

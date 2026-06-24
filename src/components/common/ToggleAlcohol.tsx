@@ -1,6 +1,12 @@
 import { useTranslation } from 'react-i18next'
+import type { ReactNode } from 'react'
 
-export default function ToggleAlcohol({ alcoholFilter, onToggle }) {
+interface ToggleAlcoholProps {
+  alcoholFilter: boolean
+  onToggle: () => void
+}
+
+export default function ToggleAlcohol({ alcoholFilter, onToggle }: ToggleAlcoholProps): ReactNode {
   const { t } = useTranslation()
 
   return (
@@ -19,7 +25,7 @@ export default function ToggleAlcohol({ alcoholFilter, onToggle }) {
         />
         <span
           className="toggle-slider"
-          tabIndex="0"
+          tabIndex={0}
           onKeyDown={(e) => {
             if (e.key === ' ' || e.key === 'Enter') {
               e.preventDefault()
