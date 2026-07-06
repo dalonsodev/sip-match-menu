@@ -1,54 +1,95 @@
-# SipMatch Menu 🍹
+# SipMatch 🍹
 
-A **React-based web application** designed for bars in Spain to showcase an interactive drink menu. The app allows users to browse cocktails, filter by category, and receive personalized recommendations through a concise quiz. Built with a focus on **responsiveness** and **multilingual support** (Spanish and English) to cater to both local and international customers.
+> **Live demo -> [sipmatch.netlify.app](https://sipmatch.netlify.app/)**
+
+Most bar menus are passive catalogues. A customer scans a QR code, faces 30+ options with no guidance, enters **decision paralysis**, and either orders "the usual" or nothing at all — both outcomes cap the ticket and waste the table's engagement window.
+
+**SipMatch** is an interactive cocktail menu built to convert that moment. A **preference-based recommendation engine** (the Quiz) guides the user to their ideal drink in 3 questions or fewer — reducing decision friction, increasing order confidence, and nudging customers toward cocktails they might not have discovered otherwise. The result is a higher average ticket and lower churn per interaction.
+
+Built with **React 19 + TypeScript**, deployed on Netlify, and designed mobile-first for the real bar environment — thumb navigation, ambient lighting, zero learning curve.
 
 ---
 
-## 🚀 Features
+## 💡 The Problem with Static QR Menus
 
-- **Interactive Drink Menu:** Browse and filter cocktails by category (e.g., alcoholic, non-alcoholic, flavor profile, main spirit).
-   -**Horizontal swipe:** Achieve 0 vertical scroll
-   -**CSS Carousel:** 80vw cards + 10vw padding + 5vw gaps
-   -**Scroll Snap:** x mandatory + center align
-   -**Peek Cards:** 10% next cocktail visible (invitation to swipe)
-   -**Click in card to show details:** Ingredients & allergens (mandatory by law for bars at least in Spain)
-- **Cocktail Count Display:** Shows the number of cocktails available after applying filters, with the number highlighted in gold (--accent) for better UX.
-- **Clear Filters Button:** A subtle button to reset category and spirit filters, displayed only when filters are active.
-- **Filter Logic Abstraction:** Uses a custom hook (useDrinkFilters) and a FilterControls component for modular and reusable filter management.
-- **Recommendation Quiz:** A quick, 3-step quiz to suggest drinks based on user preferences (e.g., alcohol content, flavor profile, spirit type).
-   - **With Alcohol:** Occasion + Flavor Style + Multi-select Spirits
-   - **No Alcohol:** Flavor Profile + Smooth/Bubbly Texture
-   - **Auto-advance** single-choice questions (150ms UX delay). Also, if after q2 there are not enough options (cocktails) to select from, skip q3 entirely and auto-advance to results
-   - **Multi-choice** spirit selection with visual toggle
-   - **Dynamic options:** render options for Q3 based on occasion and flavor selection (avoids showing NotFound component)
-   - **Smart navigation**: Discreet "‹ Back" + prominent "See Results" button
-   - **Confirmation flow**: Back button resets previous step for re-selection
-- **Multilingual Support:** Fully localized in Spanish and English using `react-i18next` for seamless language switching.
-- **Responsive Design:** Mobile-first UI with CSS units tailored for scalability:
-   - `rem` for font sizes to ensure consistent scaling.
-   - `em` for margins and paddings for proportional spacing.
-   - `px` for border-radius and specific width constraints.
-- **Modular Architecture:** Organized component structure with reusable components (DrinkCard, Layout), custom hooks (useLazyBackground), and centralized styles in **6 CSS separated files**:
-  - `globals.css`: Variables + Reset
-  - `layout.css`: Layout + Header + Nav + Footer + Page + MenuPage
-  - `components.css`: Buttons + Filters/Toggle + Cocktail Cards + Carousel + NotFound + Quiz Nav
-  - `pages.css`: Home, Quiz, Menu
-  - `utils.css`: Focus + Skip + SR
-  - `index.css`: @imports + Media queries
+| Static QR Menu | SipMatch |
+|---|---|
+| Passive catalogue — customer self-navigates | Active recommendation — app narrows the field |
+| Decision paralysis with 20–40 options | 3 questions -> 1–5 curated results |
+| No preference signal captured | Preference-aware: occasion, flavor, spirit |
+| Same experience for every customer | Personalized path: alcohol vs. non-alcohol branching |
+| Churn to a safe default order | Guided discovery -> higher-confidence, higher-value order |
+
+---
+
+## 🎯 Recommendation Engine (The Quiz)
+
+The quiz is the core conversion mechanism. It collects up to 3 preference signals and maps them to a filtered cocktail shortlist — functioning as a lightweight, rule-based recommender that mirrors the logic of a knowledgeable bartender.
+
+**Alcohol path (up to 3 signals):**
+1. **Occasion** — Aperitif / Evening & Night / With a meal / Dessert
+2. **Flavor style** — Bold & Classic / Refreshing & Light / Sweet & Fruity
+3. **Spirit preference** — multi-select from spirits available in the filtered subset
+
+**Non-alcohol path (2 signals):**
+1. **Flavor profile** — Citrus / Fruity / Herbal
+2. **Texture** — Smooth / Bubbly
+
+**Conversion-oriented UX decisions:**
+- **Auto-advance** on single-choice questions (150 ms delay for perceived responsiveness)
+- **Q3 skip logic** — if Q1 + Q2 already narrow results below the spirit count threshold, Q3 is skipped entirely and the user lands on results faster, reducing drop-off
+- **Dynamic Q3 options** — spirit buttons are derived from cocktails that match Q1 + Q2, so the user is never shown an option that leads to zero results
+- **Confirmation-aware Back** — navigating back resets only the target step, preserving the answers already given
+- **Curated shortlist, not a single answer** — results show a filtered carousel (typically 1–5 cocktails), giving the customer ownership of the final choice
+
+---
+
+## 🍸 Interactive Menu
+
+- **Horizontal-scroll carousel** — zero vertical scroll; 80vw cards + 10vw padding + 5vw gaps with CSS Scroll Snap (`x mandatory`, center-aligned)
+- **Peek cards** — 10% of the next cocktail is always visible as a natural swipe invitation
+- **Tap to reveal details** — ingredients and allergens on demand (legally required for bars in Spain)
+- **Single open card enforced** — `useActiveCard` ensures only one card shows details at a time
+- **Click-outside to dismiss** — `useClickOutside` listens at the document level
+
+### Filter Controls
+- Toggle alcoholic / non-alcoholic
+- Filter by **flavor category** and **main spirit**
+- Live **cocktail count**, highlighted in gold (`--accent`)
+- **Clear Filters** appears only when filters are active
+
+---
+
+## 🌍 Multilingual Support
+
+Spanish and English via `react-i18next` + `i18next-icu` (ICU message format for pluralization). Language is auto-detected from the browser via `i18next-browser-languagedetector` and persisted in localStorage. Fallback: Spanish.
+
+This matters in the bar context: tourist-heavy locations in Spain need both languages without a manual switch.
+
+---
+
+## ♿ Accessibility (WCAG 2.1 AA)
+
+- **Keyboard navigation** — every control focusable and operable
+- **ARIA attributes** — `aria-label`, `aria-pressed`, `role="group"`
+- **Skip to main content** link
+- **Contrast ratio** > 4.5:1 across all text
+- **Visible focus** — custom outline on every interactive element
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Technology      | Purpose                                      |
-|-----------------|----------------------------------------------|
-| React           | Dynamic, component-based UI                  |
-| React Router    | Client-side navigation                       |
-| react-i18next   | Internationalization (Spanish/English)       |
-| i18next-icu     | Support for ICU pluralization in translations|
-| CSS             | Centralized styles with custom CSS units     |
-| React Context   | Global state management                      |
-| Vite            | Fast development environment                 |
+| Technology                          | Purpose                                            |
+|-------------------------------------|----------------------------------------------------|
+| React 19                            | Component-based UI with modern hooks               |
+| TypeScript                          | Static typing across components, hooks, and data   |
+| React Router v7                     | Client-side navigation                             |
+| react-i18next + i18next-icu         | Internationalization with ICU pluralization        |
+| i18next-browser-languagedetector    | Auto-detects browser language, persists in localStorage |
+| react-icons                         | Icon library                                       |
+| CSS (6 files)                       | Centralized styles with custom properties          |
+| Vite 7                              | Build tool; strips `console.*` and `debugger` in production via esbuild |
 
 ---
 
@@ -56,148 +97,76 @@ A **React-based web application** designed for bars in Spain to showcase an inte
 
 ```
 src/
-├── components/          # Reusable components
-│   ├── common/         # Shared components (e.g., ProgressIndicator, Question, Option, ToggleAlcohol)
-│   ├── layout/         # Layout components (e.g., Navbar, Footer)
-│   └── features/       # Feature-specific components (e.g., Quiz, DrinkCard, FilterControls)
-├── pages/              # Page-level components (e.g., HomePage, DrinkDetailPage)
-├── hooks/              # Custom hooks
-│   ├── useActiveCard.js
-│   ├── useClickOutside.js
-│   ├── useDrinkFilters.js
-│   └── quiz/           # Quiz-specific hooks
-│       ├── useQuizState.js
-│       ├── useAnswerMapping.js
-│       ├── useCocktailFiltering.js
-│       ├── useQ3Options.js
-│       ├── useQuizAutoAdvance.js
-│       └── useQuizLogic.js
-├── locales/            # Translation files (es.json, en.json)
-├── data/               # Mock data (e.g., drinks.json, questions/)
-├── styles/             # Global styles (6 files)
-│   ├── globals.css
-│   ├── layout.css
-│   ├── components.css
-│   ├── pages.css
-│   ├── utils.css
-│   └── index.css
-├── i18n.js             # i18next configuration
-├── App.jsx             # Main app component
-└── index.jsx           # Entry point
+├── components/
+│   ├── common/          # ProgressIndicator, Question, Option, ToggleAlcohol, CocktailCarousel, NotFound
+│   ├── layout/          # Navbar, Footer, Layout
+│   └── features/
+│       ├── drinkcard/       # DrinkCard, DrinkCardHeader, DrinkCardDetails
+│       ├── filter-controls/ # FilterControls, FlavorFilter, SpiritFilter, FiltersFooter
+│       ├── menu/            # MenuHeader, MenuContent
+│       └── quiz/            # Quiz, QuizConfirmation, QuizContent, QuizProgress, QuizResults, QuizStep
+├── pages/               # HomePage, MenuPage
+├── hooks/
+│   ├── useActiveCard.ts       # Single-card open/close state
+│   ├── useClickOutside.ts     # Document-level click-outside listener
+│   ├── useDrinkFiltering.ts   # Menu filter state (alcohol, category, spirit)
+│   ├── useAnswerMapping.ts    # Normalizes translated answers to internal English keys
+│   ├── useQ3Options.ts        # Derives available spirit options from Q1+Q2 results
+│   ├── useQuizAutoAdvance.ts  # Auto-advance + Q3 skip logic (useRef guards against loops)
+│   ├── useQuizFiltering.ts    # Filters cocktails after Q2 and for final results
+│   ├── useQuizState.ts        # Quiz state: answers, currentStep, navigation
+│   └── useQuizLogic.ts        # Orchestrator: composes all quiz hooks (~60 lines)
+├── data/
+│   ├── cocktails.json         # Cocktail dataset (typed via discriminated union)
+│   └── questions/             # noAlcohol.ts, withAlcohol.ts
+├── locales/             # en.json, es.json
+├── styles/
+│   ├── globals.css      # CSS custom properties + reset
+│   ├── layout.css       # Header, footer, page containers
+│   ├── components.css   # Buttons, filters, toggle, cards, carousel, quiz nav
+│   ├── pages.css        # Home, Quiz, Menu page styles
+│   ├── utils.css        # Focus styles, skip link, screen-reader utilities
+│   └── index.css        # @imports + media queries
+├── types/index.ts       # BaseCocktail, AlcoholicCocktail, NonAlcoholicCocktail, Quiz types
+├── i18n.ts              # i18next configuration
+├── App.tsx              # Route definitions
+└── index.tsx            # Entry point
 ```
 
 ---
 
-## 🏗️ Setup and Installation
+## 🏛️ Architecture Notes
 
-1. **Clone the repository:**
-    ```bash
-    git clone https://github.com/dalonsodev/sip-match-menu.git
-    ```
+**Discriminated union type** — `Cocktail` is `AlcoholicCocktail | NonAlcoholicCocktail`. TypeScript narrows the type automatically in every filter function via `cocktail.hasAlcohol`, making the filtering logic type-safe and self-documenting without runtime `instanceof` checks.
 
-2. **Install dependencies:**
-    ```bash
-    npm install
-    ```
+**Answer normalization** — `useAnswerMapping` converts translated option strings back to internal English keys before filtering. This decouples the UI language from the recommendation logic entirely — the engine always operates on stable keys regardless of the active locale.
 
-3. **Run the development server:**
-    ```bash
-    npm start
-    ```
+**Hook decomposition** — `useQuizLogic` was originally ~200 lines of interleaved state, filtering, and auto-advance concerns. It was refactored into 6 single-responsibility hooks. The orchestrator now sits at ~60 lines, each hook independently testable.
+
+**Production hygiene** — Vite's esbuild config strips all `console.*` calls and `debugger` statements from production builds.
 
 ---
 
-## Accessibility (WCAG 2.1 AA)
+## 🏗️ Setup
 
-This project is built with an accessible approach, compliant to WCAG standards. Key accessibility features include:
+```bash
+git clone https://github.com/dalonsodev/DrinkWise.git
+cd DrinkWise
+npm install
+npm run dev
+```
 
-- **Keyboard Navigation:** Every control focusable and operable
-- **Screen Readers:** Clear ARIA labels ("aria-label", "aria-pressed", "role='group'")
-- **Skip to Main Content:** Direct access to main content
-- **Contrast:** > 4.5:1 in text
-- **Focus visible:** Custom outline in every interactive element
+Other scripts:
 
----
-
-### SEO on-page
-
-A simple initial on-page optimization was made, including:
-
-- `public/robots.txt` → `Allow: /`
-- `public/sitemap.xml` → Home + Quiz + Menu (2025-11-04)
-- OG image → sipmatch-cocktail-quiz-og.jpg (1200×630 px)
-- Lighthouse incognito → 100/100
-
----
-
-## 🔄 Development Process
-
-This project is built with a modular and scalable approach from the start. Key decisions include:
-
-- **Early i18n Integration:** Implemented `react-i18next` from the beginning to support Spanish and English, avoiding costly refactors and ensuring a seamless multilingual experience.
-- **CSS Units:** Using `rem` for font sizes, `em` for margins/paddings, and `px` for border-radius to ensure accessibility and responsiveness.
-- **Cocktail Count and Filters:** Added a cocktail count display with a highlighted number in gold (--accent) for better UX, along with a subtle "Clear filters" button that appears only when filters are active.
-- **Filter Logic Abstraction:** Extracted filter logic into a custom hook (useDrinkFilters) and UI into FilterControls to improve modularity and maintainability.
-- **Cocktails Carousel:** Fully responsive carousel to show full cocktail list without vertical scroll
-   - **Click to Show Cocktail Details:** Implemented useEffect with state that reveals ingredients and allergens lists.
-   - **Click Outside to Close Details:** Implemented useEffect with event listener in the whole document to close details tapping anywhere outside of the card to improve UX
-   - **Card Details (Only 1):** Implemented useEffect with state to allow details shown in just one card, achieving better consistency and UX while browsing the cocktail menu.
-   - **CSS Transitions in DrinkCards:** Improved visual UX by using smooth transitions with strategic delays.
-- **Quiz Implementation:**
-   - **Multilingual Standardization:** ANSWER_MAP converts Spanish/English answers to English keys for precise filtering
-   - **Conditional Logic:** Separate filters for alcohol (occasion+style+spirit) vs no-alcohol (flavor+texture)
-   - **State Management:** answers, currentStep, lastAnsweredStep for smooth navigation
-   - **Auto-advance Logic:** useEffect + 150ms timeout for visual feedback
-   - **Reset Pattern:** Back button resets target step
-   - **Unified Styling:** .menu-filter-btn for options + navigation consistency
-   - **Dynamic Options for q3:** based on occasion and flavor selection, to avoid user disappointment via unnecessarily showing the NotFound component.
-   - **UX Flow:** Confirmation -> Progress -> Questions -> Results
-- **Quiz Refactor (major):** Extracted useQuizLogic (~200 lines) into 6 focused hooks:
-   - **useQuizState:** State, navigation, answers
-   - **useAnswerMapping:** Multi-language answer normalization
-   - **useCocktailFiltering:** Filter logic after Q2 and final
-   - **useQ3Options:** Dynamic spirit options
-   - **useQuizAutoAdvance:** Auto-advance + Q3 skip (with useRef to prevent loops)
-   - **useQuizLogic:** Orchestrates all hooks (~60 lines)
-- **Custom Hooks:**
-   - (All of the above hooks +)
-   - **useDrinkFilters** for modular filter management
-   - **useActiveCard** to control when card details are shown/hidden
-   - **useClickOutside** to hide card details when tapping/clicking out of the card
-- **UI Refactor (modular):** Extracted components into its own folders for maintainability:
-  - `features/drinkcard/`: `DrinkCard`, `DrinkCardHeader`, `DrinkCardDetails`
-  - `features/filter-controls/`: `FilterControls`, `FlavorFilter`, `SpiritFilter`, `FilterFooter`
-  - `features/menu/`: `MenuHeader`, `MenuContent`
-  - `features/quiz/`: `Quiz`, `QuizConfirmation`, `QuizContent`, `QuizProgress`, `QuizResults`, `QuizStep`
-- **CSS Split:** 1300 lines → **5 files** for maintainability:
-  - `globals.css`: Reset + variables
-  - `layout.css`: Header, footer, page
-  - `components.css`: Buttons, toggle, filters, card
-  - `pages.css`: Home, Quiz, Menu
-  - `utils.css`: Media queries + hover
-- **Git Workflow:** Descriptive commits (e.g., `feat: setup i18n with react-i18next`) to maintain a clean codebase.
-
----
-
-## 📅 Next Steps
-
-- [x] Add filtering functionality to MenuPage.jsx to sort cocktails by category or ingredient.
-- [x] Implement the recommendation quiz with a maximum of 3 questions (e.g., alcohol preference, flavor profile, spirit type).
-- [x] Implement cocktail carousel in MenuPage.
-- [x] Implement cocktail carousel to show suggested cocktail drinks.
-- [x] Implement conditional options rendering in q3
-- [x] Auto-advance + skip q3 if only one (1) result.
-- [x] Refactor quiz logic into 6 modular hooks.
-- [x] Implement accessibility standards.
-- [x] Enhance responsiveness with media queries in index.css for better mobile support (e.g., adjust cocktail-card layout).
-- [x] Add ability for the user to see cocktail details (e.g. ingredients, allergens) by tapping the drink card.
-- [x] Assess potential file refactorings to improve readability, maintainability and preserve alignment with best practices.
-- [x] Deploy to Netlify for a live demo.
-- [] Polish some loose ends and testing in different devices.
+```bash
+npm run build      # Production build
+npm run typecheck  # tsc --noEmit
+npm run lint       # ESLint
+npm run format     # Prettier
+```
 
 ---
 
 ## 📬 Contact
 
-For questions or feedback, reach out at **masdavidalonso@gmail.com**.
-A live demo will be available at **https://sipmatch.netlify.app/** once deployed.
+**David Alonso** — [masdavidalonso@gmail.com](mailto:masdavidalonso@gmail.com)
