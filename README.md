@@ -12,13 +12,13 @@ Built with **React 19 + TypeScript**, deployed on Netlify, and designed mobile-f
 
 ## 💡 The Problem with Static QR Menus
 
-| Static QR Menu | SipMatch |
-|---|---|
-| Passive catalogue — customer self-navigates | Active recommendation — app narrows the field |
-| Decision paralysis with 20–40 options | 3 questions -> 1–5 curated results |
-| No preference signal captured | Preference-aware: occasion, flavor, spirit |
-| Same experience for every customer | Personalized path: alcohol vs. non-alcohol branching |
-| Churn to a safe default order | Guided discovery -> higher-confidence, higher-value order |
+| Static QR Menu                              | SipMatch                                                  |
+| ------------------------------------------- | --------------------------------------------------------- |
+| Passive catalogue — customer self-navigates | Active recommendation — app narrows the field             |
+| Decision paralysis with 20–40 options       | 3 questions -> 1–5 curated results                        |
+| No preference signal captured               | Preference-aware: occasion, flavor, spirit                |
+| Same experience for every customer          | Personalized path: alcohol vs. non-alcohol branching      |
+| Churn to a safe default order               | Guided discovery -> higher-confidence, higher-value order |
 
 ---
 
@@ -27,15 +27,18 @@ Built with **React 19 + TypeScript**, deployed on Netlify, and designed mobile-f
 The quiz is the core conversion mechanism. It collects up to 3 preference signals and maps them to a filtered cocktail shortlist — functioning as a lightweight, rule-based recommender that mirrors the logic of a knowledgeable bartender.
 
 **Alcohol path (up to 3 signals):**
+
 1. **Occasion** — Aperitif / Evening & Night / With a meal / Dessert
 2. **Flavor style** — Bold & Classic / Refreshing & Light / Sweet & Fruity
 3. **Spirit preference** — multi-select from spirits available in the filtered subset
 
 **Non-alcohol path (2 signals):**
+
 1. **Flavor profile** — Citrus / Fruity / Herbal
 2. **Texture** — Smooth / Bubbly
 
 **Conversion-oriented UX decisions:**
+
 - **Auto-advance** on single-choice questions (150 ms delay for perceived responsiveness)
 - **Q3 skip logic** — if Q1 + Q2 already narrow results below the spirit count threshold, Q3 is skipped entirely and the user lands on results faster, reducing drop-off
 - **Dynamic Q3 options** — spirit buttons are derived from cocktails that match Q1 + Q2, so the user is never shown an option that leads to zero results
@@ -53,6 +56,7 @@ The quiz is the core conversion mechanism. It collects up to 3 preference signal
 - **Click-outside to dismiss** — `useClickOutside` listens at the document level
 
 ### Filter Controls
+
 - Toggle alcoholic / non-alcoholic
 - Filter by **flavor category** and **main spirit**
 - Live **cocktail count**, highlighted in gold (`--accent`)
@@ -80,16 +84,16 @@ This matters in the bar context: tourist-heavy locations in Spain need both lang
 
 ## 🛠️ Tech Stack
 
-| Technology                          | Purpose                                            |
-|-------------------------------------|----------------------------------------------------|
-| React 19                            | Component-based UI with modern hooks               |
-| TypeScript                          | Static typing across components, hooks, and data   |
-| React Router v7                     | Client-side navigation                             |
-| react-i18next + i18next-icu         | Internationalization with ICU pluralization        |
-| i18next-browser-languagedetector    | Auto-detects browser language, persists in localStorage |
-| react-icons                         | Icon library                                       |
-| CSS (6 files)                       | Centralized styles with custom properties          |
-| Vite 7                              | Build tool; strips `console.*` and `debugger` in production via esbuild |
+| Technology                       | Purpose                                                                 |
+| -------------------------------- | ----------------------------------------------------------------------- |
+| React 19                         | Component-based UI with modern hooks                                    |
+| TypeScript                       | Static typing across components, hooks, and data                        |
+| React Router v7                  | Client-side navigation                                                  |
+| react-i18next + i18next-icu      | Internationalization with ICU pluralization                             |
+| i18next-browser-languagedetector | Auto-detects browser language, persists in localStorage                 |
+| react-icons                      | Icon library                                                            |
+| CSS (6 files)                    | Centralized styles with custom properties                               |
+| Vite 7                           | Build tool; strips `console.*` and `debugger` in production via esbuild |
 
 ---
 

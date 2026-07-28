@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom'
 import useActiveCard from '../../../hooks/useActiveCard'
 import CocktailCarousel from '../../common/CocktailCarousel'
 import NotFound from '../../common/NotFound'
-import type { ReactNode } from 'react'
 import type { TFunction } from 'i18next'
+import type { ReactNode } from 'react'
 import type { Cocktail } from '../../../types'
 
 interface QuizResultsProps {
@@ -30,21 +30,26 @@ export default function QuizResults({ cocktails, t }: QuizResultsProps): ReactNo
         aria-roledescription={t('a11y.carouselRoleDesc')}
       >
         {hasResults ? (
-          <CocktailCarousel cocktails={cocktails} activeCard={activeCard} />
+          <CocktailCarousel
+            cocktails={cocktails}
+            activeCard={activeCard}
+          />
         ) : (
           <NotFound />
         )}
       </div>
       <p className="explore-menu-cta">
         {t('quiz.notSatisfied')}
-        <Link to="/menu" className="explore-menu-link">
+        <Link
+          to="/menu"
+          className="explore-menu-link"
+        >
           {t('quiz.exploreMenu')}
         </Link>
       </p>
     </div>
   )
 }
-
 
 // import Link from React router DOM
 // Bellow results div, Add link pointing to menu

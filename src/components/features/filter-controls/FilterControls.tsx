@@ -1,8 +1,8 @@
+import FiltersFooter from './FiltersFooter'
 import FlavorFilter from './FlavorFilter'
 import SpiritFilter from './SpiritFilter'
-import FiltersFooter from './FiltersFooter'
-import type { ReactNode } from 'react'
 import type { TFunction } from 'i18next'
+import type { ReactNode } from 'react'
 
 interface FilterControlProps {
   alcoholFilter: boolean

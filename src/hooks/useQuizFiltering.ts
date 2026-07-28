@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 import cocktailData from '../data/cocktails.json'
-import type { Cocktail, QuizAnswer, AlcoholicCocktail } from '../types'
+import type { AlcoholicCocktail, Cocktail, QuizAnswer } from '../types'
 
 const cocktails = cocktailData as Cocktail[]
 
@@ -19,7 +19,6 @@ export default function useQuizFiltering(
   quizAlcohol: boolean,
   standardizeAnswer: (answer: QuizAnswer) => string | string[]
 ): QuizFilteringReturn {
-
   const getFilteredAfterQ2 = useCallback(() => {
     if (answers[0] === null || answers[1] === null) return []
     const q1 = standardizeAnswer(answers[0])

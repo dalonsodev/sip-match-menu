@@ -1,11 +1,11 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import useQuizState from './useQuizState'
 import useAnswerMapping from './useAnswerMapping'
+import useQ3Options from './useQ3Options'
 import useQuizAutoAdvance from './useQuizAutoAdvance'
 import useQuizFiltering from './useQuizFiltering'
-import useQ3Options from './useQ3Options'
-import type { QuizQuestion, CurrentQuestion, Cocktail, AlcoholicCocktail } from '../types'
+import useQuizState from './useQuizState'
+import type { AlcoholicCocktail, Cocktail, CurrentQuestion, QuizQuestion } from '../types'
 
 interface QuizLogicReturn extends ReturnType<typeof useQuizState> {
   currentQuestions: CurrentQuestion[]
@@ -31,11 +31,7 @@ export default function useQuizLogic(): QuizLogicReturn {
     standardizeAnswer
   )
 
-  const getQ3Options = useQ3Options(
-    state.currentStep,
-    state.quizAlcohol,
-    getFilteredAfterQ2
-  )
+  const getQ3Options = useQ3Options(state.currentStep, state.quizAlcohol, getFilteredAfterQ2)
 
   const q3DynamicOptions = getQ3Options()
 

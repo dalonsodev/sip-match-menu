@@ -1,5 +1,5 @@
+import type { TFunction } from 'i18next'
 import type { ReactNode } from 'react'
-import type { TFunction} from 'i18next'
 import type { Cocktail } from '../../../types'
 
 interface DrinkCardDetailsProps {

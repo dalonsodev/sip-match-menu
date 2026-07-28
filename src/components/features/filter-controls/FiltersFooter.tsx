@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react'
 import type { TFunction } from 'i18next'
+import type { ReactNode } from 'react'
 
 interface FiltersFooterProps {
   drinksToDisplayLength: number
@@ -21,7 +21,10 @@ export default function FiltersFooter({
         {t('menu.cocktailCount', { count: drinksToDisplayLength })}
       </p>
       {hasActiveFilters && (
-        <button onClick={() => onClearFilters()} className="clear-filters-btn">
+        <button
+          onClick={() => onClearFilters()}
+          className="clear-filters-btn"
+        >
           {t('menu.clearFilters')}
         </button>
       )}

@@ -1,6 +1,6 @@
+import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import ToggleAlcohol from '../../common/ToggleAlcohol'
-import { ReactNode } from 'react'
 
 interface QuizConfirmationProps {
   quizAlcohol: boolean
@@ -8,7 +8,11 @@ interface QuizConfirmationProps {
   onStart: () => void
 }
 
-export default function QuizConfirmation({ quizAlcohol, onToggle, onStart }: QuizConfirmationProps): ReactNode {
+export default function QuizConfirmation({
+  quizAlcohol,
+  onToggle,
+  onStart
+}: QuizConfirmationProps): ReactNode {
   const { t } = useTranslation()
 
   return (
@@ -20,7 +24,10 @@ export default function QuizConfirmation({ quizAlcohol, onToggle, onStart }: Qui
         onToggle={onToggle}
       />
       <p>{t('quiz.withoutAlcohol')}</p>
-      <button onClick={onStart} className="btn-quiz">
+      <button
+        onClick={onStart}
+        className="btn-quiz"
+      >
         {t('quiz.start')}
       </button>
     </div>

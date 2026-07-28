@@ -14,15 +14,15 @@ export interface BaseCocktail {
 
 export interface AlcoholicCocktail extends BaseCocktail {
   hasAlcohol: true
-  occasion: ("Aperitif" | "Evening/Night" | "With meal" | "Dessert")[]
-  category: "boldAndClassic" | "refreshingAndLight" | "sweetAndFruity"
-  spirit: "Whisky" | "Gin" | "Vodka" | "Rum" | "Tequila" | "Others"
+  occasion: ('Aperitif' | 'Evening/Night' | 'With meal' | 'Dessert')[]
+  category: 'boldAndClassic' | 'refreshingAndLight' | 'sweetAndFruity'
+  spirit: 'Whisky' | 'Gin' | 'Vodka' | 'Rum' | 'Tequila' | 'Others'
 }
 
 export interface NonAlcoholicCocktail extends BaseCocktail {
   hasAlcohol: false
-  category: "citrus" | "fruity" | "herbal"
-  texture: "Smooth" | "Bubbly"
+  category: 'citrus' | 'fruity' | 'herbal'
+  texture: 'Smooth' | 'Bubbly'
 }
 
 export type Cocktail = AlcoholicCocktail | NonAlcoholicCocktail

@@ -1,11 +1,13 @@
-import Question from '../../common/Question'
 import Option from '../../common/Option'
-import type { QuizQuestion, QuizOption, CurrentQuestion } from '../../../types'
+import Question from '../../common/Question'
+import type { CurrentQuestion, QuizOption, QuizQuestion } from '../../../types'
 
-type OptionsType = string[] | {
-    value: string;
-    label: string;
-}[]
+type OptionsType =
+  | string[]
+  | {
+      value: string
+      label: string
+    }[]
 
 interface QuizStepProps {
   question: CurrentQuestion

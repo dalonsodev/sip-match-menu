@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import useClickOutside from '../../../hooks/useClickOutside'
-import DrinkCardHeader from './DrinkCardHeader'
 import DrinkCardDetails from './DrinkCardDetails'
-import type { ReactNode, SyntheticEvent, KeyboardEvent } from 'react'
+import DrinkCardHeader from './DrinkCardHeader'
+import type { KeyboardEvent, ReactNode, SyntheticEvent } from 'react'
 import type { Cocktail } from '../../../types'
 
 interface DrinkCardProps {
@@ -57,13 +57,20 @@ export default function DrinkCard({ cocktail, isActive, onToggle }: DrinkCardPro
         />
         <div className="cocktail-overlay">
           <div className="cocktail-heading">
-            <DrinkCardHeader isExpanded={isExpanded} name={cocktail.name} t={t} />
+            <DrinkCardHeader
+              isExpanded={isExpanded}
+              name={cocktail.name}
+              t={t}
+            />
 
             <p className="cocktail-description">
               {t(`description.${cocktail.name}`) || cocktail.description}
             </p>
 
-            <DrinkCardDetails cocktail={cocktail} t={t} />
+            <DrinkCardDetails
+              cocktail={cocktail}
+              t={t}
+            />
           </div>
         </div>
       </div>

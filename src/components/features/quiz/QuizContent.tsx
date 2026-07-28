@@ -1,8 +1,8 @@
 import QuizProgress from './QuizProgress'
-import QuizStep from './QuizStep'
 import QuizResults from './QuizResults'
-import type { ReactNode } from 'react'
+import QuizStep from './QuizStep'
 import type { TFunction } from 'i18next'
+import type { ReactNode } from 'react'
 import type { Cocktail, CurrentQuestion, QuizOption, QuizQuestion } from '../../../types'
 
 interface QuizContent {
@@ -56,7 +56,12 @@ export default function QuizContent({
   }
 
   function renderResults() {
-    return <QuizResults cocktails={filteredCocktails} t={t} />
+    return (
+      <QuizResults
+        cocktails={filteredCocktails}
+        t={t}
+      />
+    )
   }
 
   return (

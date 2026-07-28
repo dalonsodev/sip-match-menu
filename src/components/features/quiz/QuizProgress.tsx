@@ -8,7 +8,11 @@ interface QuizProgressProps {
   onPrev: () => void
 }
 
-export default function QuizProgress({ currentStep, totalSteps, onPrev }: QuizProgressProps): ReactNode {
+export default function QuizProgress({
+  currentStep,
+  totalSteps,
+  onPrev
+}: QuizProgressProps): ReactNode {
   const { t } = useTranslation()
   const progress = (currentStep + 1) / totalSteps
 
@@ -17,7 +21,10 @@ export default function QuizProgress({ currentStep, totalSteps, onPrev }: QuizPr
       <ProgressIndicator progress={progress} />
 
       {currentStep > 0 && (
-        <button className="quiz-prev-btn" onClick={onPrev}>
+        <button
+          className="quiz-prev-btn"
+          onClick={onPrev}
+        >
           {t('quiz.back')}
         </button>
       )}

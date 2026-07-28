@@ -11,7 +11,10 @@ export default function ToggleAlcohol({ alcoholFilter, onToggle }: ToggleAlcohol
 
   return (
     <div className="menu-filter-alcohol">
-      <label className="toggle-label" htmlFor="alcohol-toggle">
+      <label
+        className="toggle-label"
+        htmlFor="alcohol-toggle"
+      >
         <span className="toggle-text">
           {t(`menu.filter.${alcoholFilter ? 'withAlcohol' : 'noAlcohol'}`)}
         </span>
@@ -32,7 +35,7 @@ export default function ToggleAlcohol({ alcoholFilter, onToggle }: ToggleAlcohol
               onToggle()
             }
           }}
-         />
+        />
       </label>
     </div>
   )
