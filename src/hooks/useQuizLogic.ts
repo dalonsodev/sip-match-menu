@@ -5,7 +5,7 @@ import useQ3Options from './useQ3Options'
 import useQuizAutoAdvance from './useQuizAutoAdvance'
 import useQuizFiltering from './useQuizFiltering'
 import useQuizState from './useQuizState'
-import type { AlcoholicCocktail, Cocktail, CurrentQuestion, QuizQuestion } from '../types'
+import type { Cocktail, CurrentQuestion } from '../types'
 
 interface QuizLogicReturn extends ReturnType<typeof useQuizState> {
   currentQuestions: CurrentQuestion[]

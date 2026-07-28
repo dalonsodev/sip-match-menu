@@ -3,7 +3,7 @@ import QuizResults from './QuizResults'
 import QuizStep from './QuizStep'
 import type { TFunction } from 'i18next'
 import type { ReactNode } from 'react'
-import type { Cocktail, CurrentQuestion, QuizOption, QuizQuestion } from '../../../types'
+import type { Cocktail, CurrentQuestion } from '../../../types'
 
 interface QuizContent {
   currentStep: number

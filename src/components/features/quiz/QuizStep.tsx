@@ -1,6 +1,6 @@
 import Option from '../../common/Option'
 import Question from '../../common/Question'
-import type { CurrentQuestion, QuizOption, QuizQuestion } from '../../../types'
+import type { CurrentQuestion } from '../../../types'
 
 type OptionsType =
   | string[]
