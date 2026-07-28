@@ -7,7 +7,12 @@ interface OptionProps {
   isMulti: boolean
 }
 
-export default function Option({ option, selected, onSelect, isMulti = false }: OptionProps): ReactNode {
+export default function Option({
+  option,
+  selected,
+  onSelect,
+  isMulti = false
+}: OptionProps): ReactNode {
   return (
     <label
       className={`menu-filter-btn quiz-option ${selected ? 'active' : ''}`}

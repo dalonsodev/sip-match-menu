@@ -1,6 +1,5 @@
-import { useEffect, useRef, Dispatch, SetStateAction } from 'react'
-import type { AlcoholicCocktail } from '../types'
-import type { QuizAnswer, CurrentQuestion } from '../types'
+import { Dispatch, SetStateAction, useEffect, useRef } from 'react'
+import type { AlcoholicCocktail, CurrentQuestion, QuizAnswer } from '../types'
 
 interface QuizAutoAdvanceProps {
   currentStep: number
@@ -35,7 +34,6 @@ export default function useQuizAutoAdvance({
   setAnswers,
   setSkippedQ3
 }: QuizAutoAdvanceProps): void {
-
   const isSkippingToResults = useRef(false)
 
   useEffect(() => {

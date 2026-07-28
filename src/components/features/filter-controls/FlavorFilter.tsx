@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react'
 import type { TFunction } from 'i18next'
+import type { ReactNode } from 'react'
 
 const CATEGORY_ALCOHOL = ['sweetAndFruity', 'refreshingAndLight', 'boldAndClassic']
 

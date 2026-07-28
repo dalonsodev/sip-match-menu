@@ -1,8 +1,8 @@
-import type { ReactNode } from 'react'
-import { Outlet } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import Navbar from './Navbar'
+import { Outlet } from 'react-router-dom'
 import Footer from './Footer'
+import Navbar from './Navbar'
+import type { ReactNode } from 'react'
 
 export default function Layout(): ReactNode {
   const { i18n } = useTranslation()

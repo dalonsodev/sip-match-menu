@@ -1,10 +1,10 @@
-import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
-import cocktailData from '../data/cocktails.json'
-import useDrinkFiltering from '../hooks/useDrinkFiltering'
-import useActiveCard from '../hooks/useActiveCard'
-import MenuHeader from '../components/features/menu/MenuHeader'
 import MenuContent from '../components/features/menu/MenuContent'
+import MenuHeader from '../components/features/menu/MenuHeader'
+import cocktailData from '../data/cocktails.json'
+import useActiveCard from '../hooks/useActiveCard'
+import useDrinkFiltering from '../hooks/useDrinkFiltering'
+import type { ReactNode } from 'react'
 import type { Cocktail } from '../types'
 
 const cocktails = cocktailData as Cocktail[]
@@ -26,9 +26,8 @@ export default function Menu(): ReactNode {
   const drinksToDisplay = cocktails.filter((cocktail: Cocktail) => {
     const matchesAlcohol = cocktail.hasAlcohol === alcoholFilter
     const matchesCategory = categoryFilter ? cocktail.category === categoryFilter : true
-    const matchesSpirit = alcoholFilter && spiritFilter && cocktail.hasAlcohol
-      ? cocktail.spirit === spiritFilter
-      : true
+    const matchesSpirit =
+      alcoholFilter && spiritFilter && cocktail.hasAlcohol ? cocktail.spirit === spiritFilter : true
 
     return matchesAlcohol && matchesCategory && matchesSpirit
   })
@@ -42,10 +41,17 @@ export default function Menu(): ReactNode {
 
   return (
     <section className="menu-page">
-      <a href="#cocktail-list" className="skip-link">
+      <a
+        href="#cocktail-list"
+        className="skip-link"
+      >
         {t('a11y.skipLink')}
       </a>
-      <MenuHeader alcoholFilter={alcoholFilter} onToggle={handleAlcoholFilterChange} t={t} />
+      <MenuHeader
+        alcoholFilter={alcoholFilter}
+        onToggle={handleAlcoholFilterChange}
+        t={t}
+      />
       <MenuContent
         drinks={drinksToDisplay}
         hasResults={hasResults}

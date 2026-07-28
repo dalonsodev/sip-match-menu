@@ -1,37 +1,59 @@
 import js from '@eslint/js'
-import globals from 'globals'
+import eslintConfigPrettier from 'eslint-config-prettier'
 import reactPlugin from 'eslint-plugin-react'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
-import { defineConfig, globalIgnores } from 'eslint/config'
+import globals from 'globals'
 import tseslint from 'typescript-eslint'
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  ...tseslint.config({
+export default tseslint.config(
+  {
+    ignores: ['dist', 'coverage', '.vite']
+  },
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+  {
     files: ['**/*.{js,jsx,ts,tsx}'],
-    extends: [
-      js.configs.recommended,
-      ...tseslint.configs.recommended,
-      reactHooks.configs['recommended-latest'],
-      reactRefresh.configs.vite,
-    ],
-    plugins: {
-      react: reactPlugin
-    },
     languageOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'module',
-      globals: globals.browser,
+      ecmaVersion: 2020,
+      globals: {
+        ...globals.browser,
+        ...globals.es2020
+      },
+      parser: tseslint.parser,
       parserOptions: {
         ecmaFeatures: { jsx: true },
-      },
+        sourceType: 'module'
+      }
     },
-    // react/prop-types disabled — TypeScript is the modern alternative
+    plugins: {
+      react: reactPlugin,
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh
+    },
     rules: {
-      '@typescript-eslint/no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
-      'react/self-closing-comp' : 'error',
-      'prefer-const': 'error'
+      ...reactHooks.configs.recommended.rules,
+      'prefer-const': 'error',
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+      'react/self-closing-comp': 'error',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_'
+        }
+      ]
     }
-  })
-])
+  },
+  {
+    files: ['vite.config.ts'],
+    languageOptions: {
+      globals: globals.node
+    },
+    rules: {
+      'no-undef': 'off'
+    }
+  },
+  eslintConfigPrettier
+)

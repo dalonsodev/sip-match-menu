@@ -1,4 +1,4 @@
-import { useMemo, useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
 import { QuizAnswer } from '../types'
 
 type AnswerMap = Record<string, string>
@@ -56,7 +56,8 @@ export default function useAnswerMapping() {
     []
   )
 
-  const standardizeAnswer = useCallback((answer: QuizAnswer): string | string[] => {
+  const standardizeAnswer = useCallback(
+    (answer: QuizAnswer): string | string[] => {
       if (answer === null) {
         return ''
       }

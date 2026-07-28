@@ -9,7 +9,6 @@ export default function useQ3Options(
   quizAlcohol: boolean,
   getFilteredAfterQ2: () => AlcoholicCocktail[]
 ): () => string[] {
-
   return useCallback(() => {
     if (!quizAlcohol || currentStep !== 2) return []
 

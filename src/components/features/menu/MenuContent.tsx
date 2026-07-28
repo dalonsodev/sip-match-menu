@@ -1,10 +1,10 @@
-import FilterControls from '../filter-controls/FilterControls'
 import CocktailCarousel from '../../common/CocktailCarousel'
 import NotFound from '../../common/NotFound'
-import type { ReactNode } from 'react'
+import FilterControls from '../filter-controls/FilterControls'
 import type { TFunction } from 'i18next'
-import type { Cocktail } from '../../../types'
+import type { ReactNode } from 'react'
 import type useActiveCard from '../../../hooks/useActiveCard'
+import type { Cocktail } from '../../../types'
 
 interface MenuContentProps {
   drinks: Cocktail[]
@@ -55,7 +55,10 @@ export default function MenuContent({
         tabIndex={-1}
       >
         {hasResults ? (
-          <CocktailCarousel cocktails={drinks} activeCard={activeCard} />
+          <CocktailCarousel
+            cocktails={drinks}
+            activeCard={activeCard}
+          />
         ) : (
           <NotFound />
         )}

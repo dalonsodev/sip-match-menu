@@ -8,7 +8,11 @@ export default function Footer(): ReactNode {
   return (
     <footer className="footer">
       <p>{t('footer.text-copy')}</p>
-      <img className="logo-footer" src={logo} alt="SipMatch" />
+      <img
+        className="logo-footer"
+        src={logo}
+        alt="SipMatch"
+      />
     </footer>
   )
 }

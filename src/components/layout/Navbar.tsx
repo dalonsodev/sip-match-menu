@@ -1,7 +1,7 @@
-import { Link, NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import type { ReactNode } from 'react'
+import { Link, NavLink } from 'react-router-dom'
 import logo from '../../assets/sipmatch-logo.svg'
+import type { ReactNode } from 'react'
 
 interface NavbarProps {
   changeLanguage: (lng: string) => void
@@ -26,13 +26,23 @@ export default function Navbar({ changeLanguage }: NavbarProps): ReactNode {
         </button>
       </div>
       <Link to="/">
-        <img className="logo-header" src={logo} alt="SipMatch" />
+        <img
+          className="logo-header"
+          src={logo}
+          alt="SipMatch"
+        />
       </Link>
       <nav className="nav-links">
-        <NavLink className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} to="/quiz">
+        <NavLink
+          className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+          to="/quiz"
+        >
           {t('nav.quiz')}
         </NavLink>
-        <NavLink className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} to="/menu">
+        <NavLink
+          className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+          to="/menu"
+        >
           {t('nav.menu')}
         </NavLink>
       </nav>

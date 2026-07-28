@@ -1,9 +1,9 @@
 import QuizProgress from './QuizProgress'
-import QuizStep from './QuizStep'
 import QuizResults from './QuizResults'
-import type { ReactNode } from 'react'
+import QuizStep from './QuizStep'
 import type { TFunction } from 'i18next'
-import type { Cocktail, CurrentQuestion, QuizOption, QuizQuestion } from '../../../types'
+import type { ReactNode } from 'react'
+import type { Cocktail, CurrentQuestion } from '../../../types'
 
 interface QuizContent {
   currentStep: number
@@ -56,7 +56,12 @@ export default function QuizContent({
   }
 
   function renderResults() {
-    return <QuizResults cocktails={filteredCocktails} t={t} />
+    return (
+      <QuizResults
+        cocktails={filteredCocktails}
+        t={t}
+      />
+    )
   }
 
   return (

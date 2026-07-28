@@ -1,6 +1,6 @@
-import { useState, Dispatch, SetStateAction } from 'react'
-import questionsWithAlcohol from '../data/questions/withAlcohol'
+import { Dispatch, SetStateAction, useState } from 'react'
 import questionsNoAlcohol from '../data/questions/noAlcohol'
+import questionsWithAlcohol from '../data/questions/withAlcohol'
 import { QuizAnswer, QuizQuestion } from '../types'
 
 interface QuizStateReturn {

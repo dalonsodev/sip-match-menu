@@ -1,8 +1,8 @@
+import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import useQuizLogic from '../../../hooks/useQuizLogic'
 import QuizConfirmation from './QuizConfirmation'
 import QuizContent from './QuizContent'
-import { ReactNode } from 'react'
 
 export default function Quiz(): ReactNode {
   const { t } = useTranslation()
