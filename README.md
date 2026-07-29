@@ -1,10 +1,20 @@
 # SipMatch 🍹
 
-> **Live demo -> [sipmatch.netlify.app](https://sipmatch.netlify.app/)**
+**An interactive cocktail menu with a preference-based recommendation engine — guides customers to their ideal drink in 3 questions or fewer.**
+
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white)
+![React Router](https://img.shields.io/badge/React%20Router-8-CA4245?logo=reactrouter&logoColor=white)
+![i18next](https://img.shields.io/badge/i18next-25-26A69A?logo=i18next&logoColor=white)
+
+**🔗 [Live Demo](https://sipmatch.netlify.app/)**
+
+---
 
 Most bar menus are passive catalogues. A customer scans a QR code, faces 30+ options with no guidance, enters **decision paralysis**, and either orders "the usual" or nothing at all — both outcomes cap the ticket and waste the table's engagement window.
 
-**SipMatch** is an interactive cocktail menu built to convert that moment. A **preference-based recommendation engine** (the Quiz) guides the user to their ideal drink in 3 questions or fewer — reducing decision friction, increasing order confidence, and nudging customers toward cocktails they might not have discovered otherwise. The result is a higher average ticket and lower churn per interaction.
+**SipMatch** is built to convert that moment. A **preference-based recommendation engine** (the Quiz) guides the user to their ideal drink in 3 questions or fewer — reducing decision friction, increasing order confidence, and nudging customers toward cocktails they might not have discovered otherwise. The result is a higher average ticket and lower churn per interaction.
 
 Built with **React 19 + TypeScript**, deployed on Netlify, and designed mobile-first for the real bar environment — thumb navigation, ambient lighting, zero learning curve.
 
@@ -22,7 +32,11 @@ Built with **React 19 + TypeScript**, deployed on Netlify, and designed mobile-f
 
 ---
 
-## 🎯 Recommendation Engine (The Quiz)
+## ✨ Features
+
+### 🎯 Recommendation Engine (The Quiz)
+
+https://github.com/user-attachments/assets/6ead01d1-7ced-4c98-b547-01fc2cb53ee3
 
 The quiz is the core conversion mechanism. It collects up to 3 preference signals and maps them to a filtered cocktail shortlist — functioning as a lightweight, rule-based recommender that mirrors the logic of a knowledgeable bartender.
 
@@ -45,9 +59,9 @@ The quiz is the core conversion mechanism. It collects up to 3 preference signal
 - **Confirmation-aware Back** — navigating back resets only the target step, preserving the answers already given
 - **Curated shortlist, not a single answer** — results show a filtered carousel (typically 1–5 cocktails), giving the customer ownership of the final choice
 
----
+### 🍸 Interactive Menu
 
-## 🍸 Interactive Menu
+https://github.com/user-attachments/assets/684cc1cd-f171-470d-9d7f-c99bb10bd8d2
 
 - **Horizontal-scroll carousel** — zero vertical scroll; 80vw cards + 10vw padding + 5vw gaps with CSS Scroll Snap (`x mandatory`, center-aligned)
 - **Peek cards** — 10% of the next cocktail is always visible as a natural swipe invitation
@@ -55,24 +69,20 @@ The quiz is the core conversion mechanism. It collects up to 3 preference signal
 - **Single open card enforced** — `useActiveCard` ensures only one card shows details at a time
 - **Click-outside to dismiss** — `useClickOutside` listens at the document level
 
-### Filter Controls
+**Filter Controls:**
 
 - Toggle alcoholic / non-alcoholic
 - Filter by **flavor category** and **main spirit**
 - Live **cocktail count**, highlighted in gold (`--accent`)
 - **Clear Filters** appears only when filters are active
 
----
-
-## 🌍 Multilingual Support
+### 🌍 Multilingual Support
 
 Spanish and English via `react-i18next` + `i18next-icu` (ICU message format for pluralization). Language is auto-detected from the browser via `i18next-browser-languagedetector` and persisted in localStorage. Fallback: Spanish.
 
 This matters in the bar context: tourist-heavy locations in Spain need both languages without a manual switch.
 
----
-
-## ♿ Accessibility (WCAG 2.1 AA)
+### ♿ Accessibility (WCAG 2.1 AA)
 
 - **Keyboard navigation** — every control focusable and operable
 - **ARIA attributes** — `aria-label`, `aria-pressed`, `role="group"`
@@ -88,12 +98,37 @@ This matters in the bar context: tourist-heavy locations in Spain need both lang
 | -------------------------------- | ----------------------------------------------------------------------- |
 | React 19                         | Component-based UI with modern hooks                                    |
 | TypeScript                       | Static typing across components, hooks, and data                        |
-| React Router v7                  | Client-side navigation                                                  |
+| react-router 8                   | Unified package — router primitives + DOM bindings in a single import   |
 | react-i18next + i18next-icu      | Internationalization with ICU pluralization                             |
 | i18next-browser-languagedetector | Auto-detects browser language, persists in localStorage                 |
 | react-icons                      | Icon library                                                            |
 | CSS (6 files)                    | Centralized styles with custom properties                               |
 | Vite 7                           | Build tool; strips `console.*` and `debugger` in production via esbuild |
+
+---
+
+## 🚀 Getting Started
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/dalonsodev/DrinkWise.git
+cd DrinkWise
+
+# 2. Install dependencies
+npm install
+
+# 3. Start the dev server
+npm run dev
+```
+
+Other useful commands:
+
+```bash
+npm run build      # Production build
+npm run typecheck  # tsc --noEmit
+npm run lint       # ESLint
+npm run format     # Prettier
+```
 
 ---
 
@@ -141,6 +176,8 @@ src/
 
 ## 🏛️ Architecture Notes
 
+**Unified react-router package** — Migrated from the split `react-router` + `react-router-dom` setup to the single unified `react-router` package (v8), which now exports both the routing primitives and DOM bindings (`BrowserRouter`, `Routes`, `Route`, `Link`, `NavLink`, `Outlet`) from one import. This removes a dependency, eliminates the version-mismatch footgun between the two packages, and reflects the library's current recommended setup.
+
 **Discriminated union type** — `Cocktail` is `AlcoholicCocktail | NonAlcoholicCocktail`. TypeScript narrows the type automatically in every filter function via `cocktail.hasAlcohol`, making the filtering logic type-safe and self-documenting without runtime `instanceof` checks.
 
 **Answer normalization** — `useAnswerMapping` converts translated option strings back to internal English keys before filtering. This decouples the UI language from the recommendation logic entirely — the engine always operates on stable keys regardless of the active locale.
@@ -151,26 +188,11 @@ src/
 
 ---
 
-## 🏗️ Setup
-
-```bash
-git clone https://github.com/dalonsodev/DrinkWise.git
-cd DrinkWise
-npm install
-npm run dev
-```
-
-Other scripts:
-
-```bash
-npm run build      # Production build
-npm run typecheck  # tsc --noEmit
-npm run lint       # ESLint
-npm run format     # Prettier
-```
-
----
-
 ## 📬 Contact
 
-**David Alonso** — [masdavidalonso@gmail.com](mailto:masdavidalonso@gmail.com)
+Built by **David Alonso**
+[GitHub](https://github.com/dalonsodev) · [LinkedIn](https://www.linkedin.com/in/dalonsodev) · [masdavidalonso@gmail.com](mailto:masdavidalonso@gmail.com)
+
+Available for remote contract work
+
+Based in Spain 🇪🇸 · working with international teams · CET
