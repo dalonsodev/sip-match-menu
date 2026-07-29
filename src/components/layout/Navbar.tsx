@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router'
 import logo from '../../assets/sipmatch-logo.svg'
 import type { ReactNode } from 'react'
 
