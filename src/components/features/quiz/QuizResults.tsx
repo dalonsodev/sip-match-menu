@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import useActiveCard from '../../../hooks/useActiveCard'
 import CocktailCarousel from '../../common/CocktailCarousel'
 import NotFound from '../../common/NotFound'
@@ -50,7 +50,3 @@ export default function QuizResults({ cocktails, t }: QuizResultsProps): ReactNo
     </div>
   )
 }
-
-// import Link from React router DOM
-// Bellow results div, Add link pointing to menu
-//

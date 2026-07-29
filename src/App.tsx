@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router'
 import Quiz from './components/features/quiz/Quiz'
 import Layout from './components/layout/Layout'
 import HomePage from './pages/HomePage'
