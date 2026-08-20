@@ -20,7 +20,7 @@ Built with **React 19 + TypeScript**, deployed on Netlify, and designed mobile-f
 
 ---
 
-## 💡 The Problem with Static QR Menus
+## The Problem with Static QR Menus
 
 | Static QR Menu                              | SipMatch                                                  |
 | ------------------------------------------- | --------------------------------------------------------- |
@@ -32,9 +32,9 @@ Built with **React 19 + TypeScript**, deployed on Netlify, and designed mobile-f
 
 ---
 
-## ✨ Features
+## Features
 
-### 🎯 Recommendation Engine (The Quiz)
+### Recommendation Engine (The Quiz)
 
 https://github.com/user-attachments/assets/6ead01d1-7ced-4c98-b547-01fc2cb53ee3
 
@@ -59,7 +59,7 @@ The quiz is the core conversion mechanism. It collects up to 3 preference signal
 - **Confirmation-aware Back** — navigating back resets only the target step, preserving the answers already given
 - **Curated shortlist, not a single answer** — results show a filtered carousel (typically 1–5 cocktails), giving the customer ownership of the final choice
 
-### 🍸 Interactive Menu
+### Interactive Menu
 
 https://github.com/user-attachments/assets/684cc1cd-f171-470d-9d7f-c99bb10bd8d2
 
@@ -76,13 +76,13 @@ https://github.com/user-attachments/assets/684cc1cd-f171-470d-9d7f-c99bb10bd8d2
 - Live **cocktail count**, highlighted in gold (`--accent`)
 - **Clear Filters** appears only when filters are active
 
-### 🌍 Multilingual Support
+### Multilingual Support
 
 Spanish and English via `react-i18next` + `i18next-icu` (ICU message format for pluralization). Language is auto-detected from the browser via `i18next-browser-languagedetector` and persisted in localStorage. Fallback: Spanish.
 
 This matters in the bar context: tourist-heavy locations in Spain need both languages without a manual switch.
 
-### ♿ Accessibility (WCAG 2.1 AA)
+### Accessibility (WCAG 2.1 AA)
 
 - **Keyboard navigation** — every control focusable and operable
 - **ARIA attributes** — `aria-label`, `aria-pressed`, `role="group"`
@@ -92,7 +92,7 @@ This matters in the bar context: tourist-heavy locations in Spain need both lang
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Technology                       | Purpose                                                                 |
 | -------------------------------- | ----------------------------------------------------------------------- |
@@ -107,7 +107,7 @@ This matters in the bar context: tourist-heavy locations in Spain need both lang
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ```bash
 # 1. Clone the repo
@@ -132,7 +132,7 @@ npm run format     # Prettier
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 src/
@@ -174,7 +174,7 @@ src/
 
 ---
 
-## 🏛️ Architecture Notes
+## Architecture Notes
 
 **Unified react-router package** — Migrated from the split `react-router` + `react-router-dom` setup to the single unified `react-router` package (v8), which now exports both the routing primitives and DOM bindings (`BrowserRouter`, `Routes`, `Route`, `Link`, `NavLink`, `Outlet`) from one import. This removes a dependency, eliminates the version-mismatch footgun between the two packages, and reflects the library's current recommended setup.
 
@@ -188,10 +188,11 @@ src/
 
 ---
 
-## 📬 Contact
+## Contact
 
 Built by **David Alonso**
-[GitHub](https://github.com/dalonsodev) · [LinkedIn](https://www.linkedin.com/in/dalonsodev) · [masdavidalonso@gmail.com](mailto:masdavidalonso@gmail.com)
+
+[GitHub](https://github.com/dalonsodev) · [LinkedIn](https://www.linkedin.com/in/dalonsodev) · [hello@dalon.so](mailto:hello@dalon.so)
 
 Available for remote contract work
 
