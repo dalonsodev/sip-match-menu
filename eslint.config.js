@@ -42,7 +42,8 @@ export default defineConfig(
       '@typescript-eslint/no-confusing-void-expression': [
         'error',
         {
-          ignoreVoidOperator: true
+          ignoreVoidOperator: true,
+          ignoreVoidReturningFunctions: true
         }
       ],
       '@typescript-eslint/no-unused-vars': [
