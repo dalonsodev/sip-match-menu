@@ -11,7 +11,7 @@ export default function Option({
   option,
   selected,
   onSelect,
-  isMulti = false
+  isMulti
 }: OptionProps): ReactNode {
   return (
     <label
