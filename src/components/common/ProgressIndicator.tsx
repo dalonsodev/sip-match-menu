@@ -5,7 +5,7 @@ export default function ProgressIndicator({ progress = 0 }: { progress?: number 
     <div className="progress-container">
       <div
         className="progress-fill"
-        style={{ width: `${progress * 100}%` }}
+        style={{ width: `${String(progress * 100)}%` }}
       />
     </div>
   )

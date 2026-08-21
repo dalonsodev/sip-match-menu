@@ -8,7 +8,7 @@ export default function Layout(): ReactNode {
   const { i18n } = useTranslation()
 
   const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng)
+    void i18n.changeLanguage(lng)
   }
 
   return (

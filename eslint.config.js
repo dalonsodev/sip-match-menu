@@ -9,10 +9,10 @@ import tseslint from 'typescript-eslint'
 
 export default defineConfig(
   {
-    ignores: ['dist', 'coverage', '.vite']
+    ignores: ['dist', 'coverage', '.vite', 'eslint.config.js']
   },
   js.configs.recommended,
-  ...tseslint.configs.recommended,
+  ...tseslint.configs.strictTypeChecked,
   {
     files: ['**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
@@ -24,7 +24,9 @@ export default defineConfig(
       parser: tseslint.parser,
       parserOptions: {
         ecmaFeatures: { jsx: true },
-        sourceType: 'module'
+        sourceType: 'module',
+        project: true,
+        tsConfigRootDir: import.meta.dirname
       }
     },
     plugins: {
@@ -37,6 +39,13 @@ export default defineConfig(
       'prefer-const': 'error',
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       'react/self-closing-comp': 'error',
+      '@typescript-eslint/no-confusing-void-expression': [
+        'error',
+        {
+          ignoreVoidOperator: true,
+          ignoreVoidReturningFunctions: true
+        }
+      ],
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -49,6 +58,7 @@ export default defineConfig(
   },
   {
     files: ['vite.config.ts'],
+    extends: [tseslint.configs.disableTypeChecked],
     languageOptions: {
       globals: globals.node
     },
