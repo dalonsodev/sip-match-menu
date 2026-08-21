@@ -23,7 +23,7 @@ export default function DrinkCard({ cocktail, isActive, onToggle }: DrinkCardPro
 
   function handleToggle(e: SyntheticEvent<HTMLElement>): void {
     e.stopPropagation()
-    onToggle?.()
+    onToggle()
     setIsExpanded((prev) => !prev)
   }
 

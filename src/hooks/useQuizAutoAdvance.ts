@@ -44,16 +44,10 @@ export default function useQuizAutoAdvance({
     const question = currentQuestions[currentStep]
     const answer = answers[currentStep]
 
-    if (answer === undefined || answer === null) return
+    if (answer === null) return
 
     // Special case: In q2 (step 1) with alcohol, check if it should skip q3
-    if (
-      quizAlcohol &&
-      currentStep === 1 &&
-      answer !== null &&
-      !question.isMulti &&
-      currentStep === lastAnsweredStep
-    ) {
+    if (quizAlcohol && currentStep === 1 && !question.isMulti && currentStep === lastAnsweredStep) {
       const filteredAfterQ2 = getFilteredAfterQ2()
 
       if (filteredAfterQ2.length === 1) {
@@ -78,7 +72,6 @@ export default function useQuizAutoAdvance({
     // Original filter for auto-advance questions
     if (
       !question.isMulti &&
-      answer !== null &&
       currentStep === lastAnsweredStep &&
       currentStep < currentQuestions.length - 1
     ) {

@@ -56,9 +56,6 @@ export default function useQuizLogic(): QuizLogicReturn {
   function handleOptionSelect(selectedOption: string, step: number): void {
     state.setAnswers((prev) => {
       const newAnswers = [...prev]
-      if (newAnswers[step] === undefined) {
-        newAnswers[step] = []
-      }
 
       const question = currentQuestions[step]
       if (question.isMulti) {
@@ -81,7 +78,7 @@ export default function useQuizLogic(): QuizLogicReturn {
     if (state.currentStep !== currentQuestions.length - 1) return true
     const ans = state.answers[state.currentStep]
     const q = currentQuestions[state.currentStep]
-    return q?.isMulti ? !(Array.isArray(ans) && ans?.length > 0) : !ans
+    return q.isMulti ? !(Array.isArray(ans) && ans.length > 0) : !ans
   }
 
   return {

@@ -32,7 +32,7 @@ export default function Menu(): ReactNode {
     return matchesAlcohol && matchesCategory && matchesSpirit
   })
 
-  if (!cocktails || !Array.isArray(cocktails)) {
+  if (!Array.isArray(cocktails)) {
     console.error('Error: cocktails data is not an array or is undefined')
     return <p>{t('menu.error')}</p>
   }

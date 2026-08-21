@@ -39,8 +39,6 @@ export default function useQuizFiltering(
   }, [answers, standardizeAnswer])
 
   const filterCocktails = useCallback(() => {
-    if (!answers.every((answer) => answer !== undefined)) return []
-
     const [q1, q2, q3] = answers.map(standardizeAnswer)
 
     return cocktails.filter((cocktail) => {

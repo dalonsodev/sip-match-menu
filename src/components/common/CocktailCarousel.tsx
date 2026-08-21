@@ -16,7 +16,7 @@ export default function CocktailCarousel({
   const { t } = useTranslation()
   const { activeIndex, activateCard } = activeCard
 
-  if (!cocktails || cocktails.length === 0) {
+  if (cocktails.length === 0) {
     return null
   }
 
@@ -27,7 +27,7 @@ export default function CocktailCarousel({
         className="cocktail-card-wrapper carousel-item"
         role="group"
         aria-roledescription={t('a11y.cocktailRoleDesc')}
-        aria-label={`${index + 1} ${t('a11y.of')} ${cocktails.length}: ${cocktail.name}`}
+        aria-label={`${String(index + 1)} ${t('a11y.of')} ${String(cocktails.length)}: ${cocktail.name}`}
       >
         <DrinkCard
           cocktail={cocktail}
