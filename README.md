@@ -194,6 +194,6 @@ Built by **David Alonso**
 
 [GitHub](https://github.com/dalonsodev) · [LinkedIn](https://www.linkedin.com/in/dalonsodev) · [hello@dalon.so](mailto:hello@dalon.so)
 
-Available for remote contract work
+Open to remote contract work and in-house roles in Spain
 
 Based in Spain 🇪🇸 · working with international teams · CET
